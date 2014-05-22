@@ -1,4 +1,4 @@
-package be.bendem.chess.pieces;
+package be.bendem.chess;
 
 /**
  * @author bendem

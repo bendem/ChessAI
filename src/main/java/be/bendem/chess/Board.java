@@ -1,8 +1,8 @@
 package be.bendem.chess;
 
+import be.bendem.chess.iterators.CoordinatesIterator;
 import be.bendem.chess.pieces.AbstractPiece;
 import be.bendem.chess.pieces.Bishop;
-import be.bendem.chess.pieces.Color;
 import be.bendem.chess.pieces.King;
 import be.bendem.chess.pieces.Knight;
 import be.bendem.chess.pieces.Pawn;
@@ -43,8 +43,8 @@ public class Board {
         board[row][7] = new Rook(color, new Coordinates(7, row));
     }
 
-    public AbstractPiece get(int x, int y) {
-        return board[y][x];
+    public AbstractPiece get(Coordinates coordinates) {
+        return board[coordinates.getY()][coordinates.getX()];
     }
 
     public void move(Move move) {
@@ -58,12 +58,16 @@ public class Board {
         move.getPiece().getCoordinates().setY(to.getY());
     }
 
-    public static boolean isWhite(int x, int y) {
-        return (x+y) % 2 == 0;
+    public CoordinatesIterator iterator(Coordinates coordinates, Direction direction) {
+        return new CoordinatesIterator(coordinates, direction);
     }
 
-    public static boolean isBlack(int x, int y) {
-        return !isWhite(x, y);
+    public static boolean isWhite(Coordinates coordinates) {
+        return (coordinates.getX()+coordinates.getY()) % 2 == 0;
+    }
+
+    public static boolean isBlack(Coordinates coordinates) {
+        return !isWhite(coordinates);
     }
 
 }

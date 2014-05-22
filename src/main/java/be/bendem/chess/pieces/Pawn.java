@@ -1,9 +1,13 @@
 package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
+import be.bendem.chess.Color;
 import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * @author bendem
@@ -14,6 +18,7 @@ public class Pawn extends AbstractPiece {
 
     public Pawn(Color color, Direction direction, Coordinates coordinates) {
         super(color, coordinates);
+        this.direction = direction;
     }
 
     @Override
@@ -21,8 +26,9 @@ public class Pawn extends AbstractPiece {
         return false;
     }
 
-    public Direction getDirection() {
-        return direction;
+    @Override
+    public Collection<Direction> getAllDirections() {
+        return Arrays.asList(direction);
     }
 
 }

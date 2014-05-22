@@ -21,7 +21,7 @@ public class BoardTest extends TestCase {
     public void testIsWhite() throws Exception {
         for(int y = 0; y < 8; y++) {
             for(int x = 0; x < 8; x++) {
-                assertEquals("["+x+"]["+y+"]", correctBoard[x][y], Board.isWhite(x, y));
+                assertEquals("["+x+"]["+y+"]", correctBoard[x][y], Board.isWhite(new Coordinates(x, y)));
             }
         }
     }
@@ -29,7 +29,7 @@ public class BoardTest extends TestCase {
     public void testIsBlack() throws Exception {
         for(int y = 0; y < 8; y++) {
             for(int x = 0; x < 8; x++) {
-                assertEquals("["+x+"]["+y+"]", correctBoard[x][y], !Board.isBlack(x, y));
+                assertEquals("["+x+"]["+y+"]", correctBoard[x][y], !Board.isBlack(new Coordinates(x, y)));
             }
         }
     }
