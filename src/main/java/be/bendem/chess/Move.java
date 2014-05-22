@@ -8,13 +8,20 @@ import be.bendem.chess.pieces.AbstractPiece;
 public class Move {
 
     private final AbstractPiece piece;
-    private final Coordinates from;
-    private final Coordinates to;
+    private final Coordinates   from;
+    private final Direction     direction;
+    private final int           count;
+    private final Coordinates   to;
 
-    public Move(AbstractPiece piece, Coordinates from, Coordinates to) {
+    public Move(AbstractPiece piece, Coordinates from, Direction direction, int count) {
         this.piece = piece;
         this.from = from;
-        this.to = to;
+        this.direction = direction;
+        this.count = count;
+        to = from.clone();
+        for(int i = 0; i < count; i++) {
+            to.add(direction);
+        }
     }
 
     public AbstractPiece getPiece() {
@@ -27,6 +34,14 @@ public class Move {
 
     public Coordinates getTo() {
         return to;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public int getCount() {
+        return count;
     }
 
 }

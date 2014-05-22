@@ -16,13 +16,12 @@ public class Coordinates implements Cloneable {
         this.y = y;
     }
 
-    public Coordinates clone() {
-        try {
-            return (Coordinates) super.clone();
-        } catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-            return null;
+    public void add(Direction direction) {
+        if(overflow(this, direction)) {
+            throw new IllegalArgumentException("No pointing outside the board");
         }
+        x += direction.getX();
+        y += direction.getY();
     }
 
     public int getX() {
@@ -39,6 +38,15 @@ public class Coordinates implements Cloneable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Coordinates clone() {
+        try {
+            return (Coordinates) super.clone();
+        } catch(CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static boolean overflow(int x, int y) {
