@@ -1,6 +1,7 @@
 package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
+import be.bendem.chess.Coordinates;
 import be.bendem.chess.Move;
 
 /**
@@ -8,8 +9,8 @@ import be.bendem.chess.Move;
  */
 public class Queen extends AbstractPiece {
 
-    public Queen(Color color) {
-        super(color);
+    public Queen(Color color, Coordinates coordinates) {
+        super(color, coordinates);
     }
 
     @Override
