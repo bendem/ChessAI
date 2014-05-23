@@ -39,6 +39,10 @@ public abstract class AbstractPiece {
         return Collections.unmodifiableSet(directions);
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public Coordinates getCoordinates() {
         return coordinates;
     }

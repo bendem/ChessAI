@@ -8,6 +8,7 @@ import be.bendem.chess.Move;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author bendem
@@ -20,7 +21,28 @@ public class Rook extends AbstractPiece {
 
     @Override
     public boolean canMove(Board board, Move move) {
-        return false;
+        if(!getDirections().contains(move.getDirection())) {
+            return false;
+        }
+
+        Iterator<Coordinates> it = board.iterator(move.getFrom(), move.getDirection());
+        int count = 0;
+
+        while(it.hasNext() && count < move.getCount()) {
+            Coordinates current = it.next();
+            ++count;
+
+            if(!board.isEmpty(current)) {
+                AbstractPiece piece = board.get(current);
+                if(piece.getColor() == move.getPiece().getColor()) {
+                    return false;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return count == move.getCount();
     }
 
     @Override
