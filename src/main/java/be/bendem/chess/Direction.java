@@ -11,10 +11,10 @@ public enum Direction {
     Down(0, 1),
     Left(-1, 0),
     Right(1, 0),
-    LeftUp(-1, -1),
-    LeftDown(-1, 1),
-    RightUp(1, -1),
-    RightDown(1, 1),
+    LeftUp(Left, Up),
+    LeftDown(Left, Down),
+    RightUp(Right, Up),
+    RightDown(Right, Down),
     KnightLeftUp(Left, Up),
     KnightLeftDown(Left, Down),
     KnightRightUp(Right, Up),
@@ -28,10 +28,14 @@ public enum Direction {
     private final int x;
     private final int y;
 
-    Direction(Direction two, Direction one) {
+    Direction(Direction one, Direction two) {
+        this(one, two, false);
+    }
+
+    Direction(Direction one, Direction two, boolean firstCountTwice) {
         // TODO Check if this is right
-        this.x = one.getX() + two.getX()*2;
-        this.y = one.getY() + two.getY()*2;
+        this.x = one.getX() * (firstCountTwice ? 2 : 1) + two.getX();
+        this.y = one.getY() * (firstCountTwice ? 2 : 1) + two.getY();
     }
 
     Direction(int x, int y) {
