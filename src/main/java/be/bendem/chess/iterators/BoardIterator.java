@@ -21,7 +21,7 @@ public class BoardIterator implements Iterator<AbstractPiece> {
         this.board = board;
         this.filter = filter;
         current = new Coordinates(0, 0);
-        getNext();
+        getNext(false);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class BoardIterator implements Iterator<AbstractPiece> {
     @Override
     public AbstractPiece next() {
         AbstractPiece piece = board.get(current);
-        getNext();
+        getNext(true);
         return piece;
     }
 
@@ -41,25 +41,32 @@ public class BoardIterator implements Iterator<AbstractPiece> {
         throw new UnsupportedOperationException();
     }
 
-    private void getNext() {
-        while(!filter.keep(board.get(current))) {
+    private void getNext(boolean ignoreCurrent) {
+        if(ignoreCurrent) {
             incrementCurrent();
+        }
+
+        while(!filter.keep(board.get(current))) {
+            if(!incrementCurrent()) {
+                return;
+            }
         }
         hasNext = true;
     }
 
-    private void incrementCurrent() {
+    private boolean incrementCurrent() {
         if(current.getX() == 7) {
-            current.setX(0);
             // End of the board
             if(current.getY() == 7) {
                 hasNext = false;
-                return;
+                return false;
             }
+            current.setX(0);
             current.setY(current.getY()+1);
         } else {
             current.setX(current.getX()+1);
         }
+        return true;
     }
 
 }

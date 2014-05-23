@@ -55,7 +55,7 @@ public class Coordinates implements Cloneable {
     }
 
     public static boolean overflow(int x, int y) {
-        return x < 0 && y < 0 && x > 7 && y > 7;
+        return x < 0 || y < 0 || x > 7 || y > 7;
     }
 
     public static boolean overflow(int x, int y, Direction direction) {
