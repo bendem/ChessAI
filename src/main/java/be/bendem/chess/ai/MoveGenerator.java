@@ -59,7 +59,7 @@ public class MoveGenerator {
             }
         }
 
-        System.out.println("Moves generated in " + ((System.nanoTime() - time)/1000) + "µs");
+        System.out.println(String.valueOf(moves.size()) + " moves generated in " + ((System.nanoTime() - time)/1000) + "µs");
 
         return moves;
     }
