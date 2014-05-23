@@ -40,7 +40,7 @@ public class Coordinates implements Cloneable {
         this.y = y;
     }
 
-    public Coordinates clone() {
+    public final Coordinates clone() {
         try {
             return (Coordinates) super.clone();
         } catch(CloneNotSupportedException e) {
