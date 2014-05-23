@@ -15,14 +15,14 @@ public enum Direction {
     LeftDown(Left, Down),
     RightUp(Right, Up),
     RightDown(Right, Down),
-    KnightLeftUp(Left, Up),
-    KnightLeftDown(Left, Down),
-    KnightRightUp(Right, Up),
-    KnightRightDown(Right, Down),
-    KnightUpLeft(Up, Left),
-    KnightDownLeft(Down, Left),
-    KnightUpRight(Up, Right),
-    KnightDownRight(Down, Right),
+    KnightLeftUp(Left, Up, true),
+    KnightLeftDown(Left, Down, true),
+    KnightRightUp(Right, Up, true),
+    KnightRightDown(Right, Down, true),
+    KnightUpLeft(Up, Left, true),
+    KnightDownLeft(Down, Left, true),
+    KnightUpRight(Up, Right, true),
+    KnightDownRight(Down, Right, true),
     ;
 
     private final int x;
