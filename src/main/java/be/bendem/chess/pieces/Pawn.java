@@ -15,17 +15,10 @@ import java.util.Set;
 public class Pawn extends AbstractPiece {
 
     private Direction direction;
-    private boolean hasMoved = false;
 
     public Pawn(Color color, Direction direction, Coordinates coordinates) {
         super(color, coordinates);
         this.direction = direction;
-    }
-
-    @Override
-    public void move(Coordinates to) {
-        super.move(to);
-        hasMoved = true;
     }
 
     @Override

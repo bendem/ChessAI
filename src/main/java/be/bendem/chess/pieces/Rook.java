@@ -19,32 +19,6 @@ public class Rook extends AbstractPiece {
     }
 
     @Override
-    public boolean canMove(Board board, Move move) {
-        if(!getDirections().contains(move.getDirection())) {
-            return false;
-        }
-
-        Iterator<Coordinates> it = board.iterator(move.getFrom(), move.getDirection());
-        int count = 0;
-
-        while(it.hasNext() && count < move.getCount()) {
-            Coordinates current = it.next();
-            ++count;
-
-            if(!board.isEmpty(current)) {
-                AbstractPiece piece = board.get(current);
-                if(piece.getColor() == move.getPiece().getColor()) {
-                    return false;
-                } else {
-                    break;
-                }
-            }
-        }
-
-        return count == move.getCount();
-    }
-
-    @Override
     public Set<Direction> getAllDirections() {
         return Direction.getStraights();
     }

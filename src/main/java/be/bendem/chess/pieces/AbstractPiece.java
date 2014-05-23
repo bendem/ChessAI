@@ -18,14 +18,39 @@ public abstract class AbstractPiece {
 
     protected final Color color;
     protected final Coordinates coordinates;
+    protected boolean hasMoved = false;
 
     protected AbstractPiece(Color color, Coordinates coordinates) {
         this.color = color;
         this.coordinates = coordinates;
     }
 
-    public abstract boolean canMove(Board board, Move move);
     public abstract Set<Direction> getAllDirections();
+
+    public boolean canMove(Board board, Move move) {
+        if(!getDirections().contains(move.getDirection())) {
+            return false;
+        }
+
+        Iterator<Coordinates> it = board.iterator(move.getFrom(), move.getDirection());
+        int count = 0;
+
+        while(it.hasNext() && count < move.getCount()) {
+            Coordinates current = it.next();
+            ++count;
+
+            if(!board.isEmpty(current)) {
+                AbstractPiece piece = board.get(current);
+                if(piece.getColor() == move.getPiece().getColor()) {
+                    return false;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return count == move.getCount();
+    }
 
     public Set<Direction> getDirections() {
         Set<Direction> directions = getAllDirections();
@@ -43,6 +68,7 @@ public abstract class AbstractPiece {
     public void move(Coordinates to) {
         coordinates.setX(to.getX());
         coordinates.setY(to.getY());
+        hasMoved = true;
     }
 
     public Color getColor() {

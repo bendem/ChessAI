@@ -19,7 +19,13 @@ public class King extends AbstractPiece {
 
     @Override
     public boolean canMove(Board board, Move move) {
-        return false;
+        if(move.getCount() != 1) {
+            return false;
+        }
+
+        // TODO Check Rock!
+
+        return super.canMove(board, move);
     }
 
     @Override
