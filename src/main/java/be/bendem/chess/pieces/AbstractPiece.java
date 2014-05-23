@@ -8,6 +8,7 @@ import be.bendem.chess.Move;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -27,11 +28,12 @@ public abstract class AbstractPiece {
     public abstract Set<Direction> getAllDirections();
 
     public Set<Direction> getDirections() {
-        Set<Direction> directions = new HashSet<>();
+        Set<Direction> directions = getAllDirections();
 
-        for(Direction direction : getAllDirections()) {
-            if(!Coordinates.overflow(coordinates, direction)) {
-                directions.add(direction);
+        Iterator<Direction> iterator = directions.iterator();
+        while(iterator.hasNext()) {
+            if(Coordinates.overflow(coordinates, iterator.next())) {
+                iterator.remove();
             }
         }
 
