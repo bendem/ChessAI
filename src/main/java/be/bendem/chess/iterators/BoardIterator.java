@@ -43,11 +43,15 @@ public class BoardIterator implements Iterator<AbstractPiece> {
 
     private void getNext(boolean ignoreCurrent) {
         if(ignoreCurrent) {
-            incrementCurrent();
+            if(!incrementCurrent()) {
+                hasNext = false;
+                return;
+            }
         }
 
         while(!filter.keep(board.get(current))) {
             if(!incrementCurrent()) {
+                hasNext = false;
                 return;
             }
         }
@@ -58,7 +62,6 @@ public class BoardIterator implements Iterator<AbstractPiece> {
         if(current.getX() == 7) {
             // End of the board
             if(current.getY() == 7) {
-                hasNext = false;
                 return false;
             }
             current.setX(0);
