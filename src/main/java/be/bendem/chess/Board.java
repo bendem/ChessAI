@@ -54,8 +54,7 @@ public class Board {
         board[to.getY()][to.getX()] = board[from.getY()][from.getX()];
         board[from.getY()][from.getX()] = null;
 
-        move.getPiece().getCoordinates().setX(to.getX());
-        move.getPiece().getCoordinates().setY(to.getY());
+        move.getPiece().move(to);
     }
 
     public Move createMove(Coordinates coordinates, Direction direction, int count) {

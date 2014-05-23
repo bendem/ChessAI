@@ -40,6 +40,11 @@ public abstract class AbstractPiece {
         return Collections.unmodifiableSet(directions);
     }
 
+    public void move(Coordinates to) {
+        coordinates.setX(to.getX());
+        coordinates.setY(to.getY());
+    }
+
     public Color getColor() {
         return color;
     }
