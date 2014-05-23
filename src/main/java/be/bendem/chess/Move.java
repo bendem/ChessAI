@@ -44,4 +44,9 @@ public class Move {
         return count;
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" + "piece=" + piece + ", from=" + from + ", direction=" + direction + ", count=" + count + ", to=" + to + '}';
+    }
+
 }

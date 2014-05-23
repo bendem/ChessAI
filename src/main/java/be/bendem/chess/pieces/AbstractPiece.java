@@ -79,4 +79,9 @@ public abstract class AbstractPiece {
         return coordinates;
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" + "color=" + color + ", coordinates=" + coordinates + ", hasMoved=" + hasMoved + '}';
+    }
+
 }

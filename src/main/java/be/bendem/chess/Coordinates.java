@@ -49,6 +49,11 @@ public class Coordinates implements Cloneable {
         }
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" + "x=" + x + ", y=" + y + '}';
+    }
+
     public static boolean overflow(int x, int y) {
         return x < 0 && y < 0 && x > 7 && y > 7;
     }
