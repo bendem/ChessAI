@@ -6,7 +6,6 @@ import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +24,7 @@ public abstract class AbstractPiece {
     }
 
     public abstract boolean canMove(Board board, Move move);
-    public abstract Collection<Direction> getAllDirections();
+    public abstract Set<Direction> getAllDirections();
 
     public Set<Direction> getDirections() {
         Set<Direction> directions = new HashSet<>();

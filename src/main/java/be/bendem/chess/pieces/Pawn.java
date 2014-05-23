@@ -6,8 +6,8 @@ import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * @author bendem
@@ -27,8 +27,8 @@ public class Pawn extends AbstractPiece {
     }
 
     @Override
-    public Collection<Direction> getAllDirections() {
-        return Arrays.asList(direction);
+    public Set<Direction> getAllDirections() {
+        return EnumSet.of(direction);
     }
 
 }

@@ -6,8 +6,7 @@ import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author bendem
@@ -24,8 +23,8 @@ public class King extends AbstractPiece {
     }
 
     @Override
-    public Collection<Direction> getAllDirections() {
-        return Arrays.asList(Direction.values());
+    public Set<Direction> getAllDirections() {
+        return Direction.getNormals();
     }
 
 }

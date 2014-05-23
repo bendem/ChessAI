@@ -58,6 +58,10 @@ public class Board {
         move.getPiece().getCoordinates().setY(to.getY());
     }
 
+    public Move createMove(Coordinates coordinates, Direction direction, int count) {
+        return new Move(get(coordinates), coordinates, direction, count);
+    }
+
     public boolean isEmpty(Coordinates coordinates) {
         return get(coordinates) == null;
     }
