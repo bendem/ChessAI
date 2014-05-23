@@ -19,7 +19,19 @@ public class Knight extends AbstractPiece {
 
     @Override
     public boolean canMove(Board board, Move move) {
-        return false;
+        if(move.getCount() > 1) {
+            return false;
+        }
+
+        if(!Direction.getKnights().contains(move.getDirection())) {
+            return false;
+        }
+
+        if(Coordinates.overflow(coordinates, move.getDirection())) {
+            return false;
+        }
+
+        return board.isEmpty(move.getTo()) || board.get(move.getTo()).getColor() != color;
     }
 
     @Override
