@@ -17,15 +17,6 @@ public class BoardIterator implements Iterator<AbstractPiece> {
     private Coordinates current;
     private boolean hasNext;
 
-    public BoardIterator(Board board) {
-        this(board, new Filter<AbstractPiece>() {
-            @Override
-            public boolean keep(AbstractPiece element) {
-                return true;
-            }
-        });
-    }
-
     public BoardIterator(Board board, Filter<AbstractPiece> filter) {
         this.board = board;
         this.filter = filter;

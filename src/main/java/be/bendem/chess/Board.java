@@ -1,5 +1,7 @@
 package be.bendem.chess;
 
+import be.bendem.chess.filter.Filter;
+import be.bendem.chess.iterators.BoardIterator;
 import be.bendem.chess.iterators.CoordinatesIterator;
 import be.bendem.chess.pieces.AbstractPiece;
 import be.bendem.chess.pieces.Bishop;
@@ -8,6 +10,8 @@ import be.bendem.chess.pieces.Knight;
 import be.bendem.chess.pieces.Pawn;
 import be.bendem.chess.pieces.Queen;
 import be.bendem.chess.pieces.Rook;
+
+import java.util.Iterator;
 
 /**
  * @author bendem
@@ -65,7 +69,15 @@ public class Board {
         return get(coordinates) == null;
     }
 
-    public CoordinatesIterator iterator(Coordinates coordinates, Direction direction) {
+    public Iterator<AbstractPiece> iterator() {
+        return iterator(null);
+    }
+
+    public Iterator<AbstractPiece> iterator(Filter<AbstractPiece> filter) {
+        return new BoardIterator(this, filter);
+    }
+
+    public Iterator<Coordinates> iterator(Coordinates coordinates, Direction direction) {
         return new CoordinatesIterator(coordinates, direction);
     }
 
