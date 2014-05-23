@@ -14,7 +14,7 @@ import java.util.Set;
 public class King extends AbstractPiece {
 
     public King(Color color, Coordinates coordinates) {
-        super(color, coordinates);
+        super(color, coordinates, true);
     }
 
     @Override

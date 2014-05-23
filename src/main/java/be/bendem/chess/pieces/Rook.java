@@ -15,7 +15,7 @@ import java.util.Set;
 public class Rook extends AbstractPiece {
 
     public Rook(Color color, Coordinates coordinates) {
-        super(color, coordinates);
+        super(color, coordinates, false);
     }
 
     @Override

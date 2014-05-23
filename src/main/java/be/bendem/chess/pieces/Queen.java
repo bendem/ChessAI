@@ -12,7 +12,7 @@ import java.util.Set;
 public class Queen extends AbstractPiece {
 
     public Queen(Color color, Coordinates coordinates) {
-        super(color, coordinates);
+        super(color, coordinates, false);
     }
 
     @Override

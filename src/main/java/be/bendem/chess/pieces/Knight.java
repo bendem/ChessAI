@@ -14,7 +14,7 @@ import java.util.Set;
 public class Knight extends AbstractPiece {
 
     public Knight(Color color, Coordinates coordinates) {
-        super(color, coordinates);
+        super(color, coordinates, true);
     }
 
     @Override

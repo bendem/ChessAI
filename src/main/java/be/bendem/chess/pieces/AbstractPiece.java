@@ -7,7 +7,6 @@ import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -18,11 +17,13 @@ public abstract class AbstractPiece {
 
     protected final Color color;
     protected final Coordinates coordinates;
+    private final boolean isMoveCountRestricted;
     protected boolean hasMoved = false;
 
-    protected AbstractPiece(Color color, Coordinates coordinates) {
+    protected AbstractPiece(Color color, Coordinates coordinates, boolean isMoveCountRestricted) {
         this.color = color;
         this.coordinates = coordinates;
+        this.isMoveCountRestricted = isMoveCountRestricted;
     }
 
     public abstract Set<Direction> getAllDirections();
@@ -77,6 +78,10 @@ public abstract class AbstractPiece {
 
     public Coordinates getCoordinates() {
         return coordinates;
+    }
+
+    public boolean isMoveCountRestricted() {
+        return isMoveCountRestricted;
     }
 
     @Override

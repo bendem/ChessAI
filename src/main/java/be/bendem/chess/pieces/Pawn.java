@@ -17,7 +17,7 @@ public class Pawn extends AbstractPiece {
     private Direction direction;
 
     public Pawn(Color color, Direction direction, Coordinates coordinates) {
-        super(color, coordinates);
+        super(color, coordinates, true);
         this.direction = direction;
     }
 

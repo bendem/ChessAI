@@ -12,7 +12,7 @@ import java.util.Set;
 public class Bishop extends AbstractPiece {
 
     public Bishop(Color color, Coordinates coordinates) {
-        super(color, coordinates);
+        super(color, coordinates, false);
     }
 
     @Override

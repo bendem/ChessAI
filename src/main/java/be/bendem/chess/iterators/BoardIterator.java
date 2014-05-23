@@ -43,21 +43,23 @@ public class BoardIterator implements Iterator<AbstractPiece> {
 
     private void getNext() {
         while(!filter.keep(board.get(current))) {
-            // Move
-            if(current.getX() == 7) {
-                current.setX(0);
-                // End of the board
-                if(current.getY() == 7) {
-                    hasNext = false;
-                    return;
-                }
-                current.setY(current.getY()+1);
-            } else {
-                current.setX(current.getX()+1);
-            }
+            incrementCurrent();
         }
         hasNext = true;
+    }
 
+    private void incrementCurrent() {
+        if(current.getX() == 7) {
+            current.setX(0);
+            // End of the board
+            if(current.getY() == 7) {
+                hasNext = false;
+                return;
+            }
+            current.setY(current.getY()+1);
+        } else {
+            current.setX(current.getX()+1);
+        }
     }
 
 }
