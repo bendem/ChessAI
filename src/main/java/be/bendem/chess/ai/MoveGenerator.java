@@ -9,8 +9,10 @@ import be.bendem.chess.filter.ColorFilter;
 import be.bendem.chess.iterators.CoordinatesIterator;
 import be.bendem.chess.pieces.AbstractPiece;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,8 +26,8 @@ public class MoveGenerator {
         this.board = board;
     }
 
-    public Set<Move> generate(Color color) {
-        Set<Move> moves = new HashSet<>();
+    public List<Move> generate(Color color) {
+        List<Move> moves = new ArrayList<>();
 
         Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorFilter(color));
 
