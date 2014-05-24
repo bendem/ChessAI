@@ -49,7 +49,7 @@ public class BoardIterator implements Iterator<AbstractPiece> {
             }
         }
 
-        while(!filter.keep(board.get(current))) {
+        while(filter != null && !filter.keep(board.get(current))) {
             if(!incrementCurrent()) {
                 hasNext = false;
                 return;
