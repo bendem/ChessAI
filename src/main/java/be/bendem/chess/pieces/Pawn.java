@@ -39,12 +39,25 @@ public class Pawn extends AbstractPiece {
         }
 
         return Direction.getStraights().contains(moveDirection) && board.isEmpty(move.getTo())
-            || Direction.getDiagonals().contains(moveDirection) && board.get(move.getTo()).getColor() != color;
+            || Direction.getDiagonals().contains(moveDirection) && !board.isEmpty(move.getTo()) && board.get(move.getTo()).getColor() != color;
     }
 
     @Override
     public Set<Direction> getAllDirections() {
-        return EnumSet.of(direction);
+        EnumSet<Direction> set = EnumSet.of(direction);
+        if(direction == Direction.Up) {
+            set.add(Direction.LeftUp);
+            set.add(Direction.RightUp);
+        } else {
+            set.add(Direction.LeftDown);
+            set.add(Direction.RightDown);
+        }
+        return set;
+    }
+
+    @Override
+    public boolean isMoveCountRestricted() {
+        return isMoveCountRestricted && hasMoved;
     }
 
 }

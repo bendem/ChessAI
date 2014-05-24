@@ -17,7 +17,7 @@ public abstract class AbstractPiece {
 
     protected final Color color;
     protected final Coordinates coordinates;
-    private final boolean isMoveCountRestricted;
+    protected final boolean isMoveCountRestricted;
     protected boolean hasMoved = false;
 
     protected AbstractPiece(Color color, Coordinates coordinates, boolean isMoveCountRestricted) {
