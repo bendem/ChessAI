@@ -6,14 +6,11 @@ import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import be.bendem.chess.filter.ColorFilter;
-import be.bendem.chess.iterators.CoordinatesIterator;
 import be.bendem.chess.pieces.AbstractPiece;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author bendem
@@ -45,7 +42,7 @@ public class MoveGenerator {
                     }
 
                 } else {
-                    Iterator<Coordinates> coordinatesIterator = new CoordinatesIterator(piece.getCoordinates(), direction);
+                    Iterator<Coordinates> coordinatesIterator = board.iterator(piece.getCoordinates(), direction);
                     int count = 0;
                     while(coordinatesIterator.hasNext()) {
                         coordinatesIterator.next();

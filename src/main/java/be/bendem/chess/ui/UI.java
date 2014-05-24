@@ -4,17 +4,12 @@ import be.bendem.chess.Board;
 import be.bendem.chess.Coordinates;
 import be.bendem.chess.pieces.AbstractPiece;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
