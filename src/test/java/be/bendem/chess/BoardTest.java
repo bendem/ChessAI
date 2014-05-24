@@ -18,6 +18,20 @@ public class BoardTest extends TestCase {
         }
     }
 
+    public void testIsEmtpy() throws Exception {
+        Board board = new Board();
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                boolean empty = board.isEmpty(new Coordinates(j, i));
+                if(i < 2 || i > 5) {
+                    assertFalse(empty);
+                } else {
+                    assertTrue(empty);
+                }
+            }
+        }
+    }
+
     public void testIsWhite() throws Exception {
         for(int y = 0; y < 8; y++) {
             for(int x = 0; x < 8; x++) {
