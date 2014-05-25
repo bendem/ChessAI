@@ -11,31 +11,40 @@ public enum Direction {
     Down(0, 1),
     Left(-1, 0),
     Right(1, 0),
+
     LeftUp(Left, Up),
     LeftDown(Left, Down),
     RightUp(Right, Up),
     RightDown(Right, Down),
-    KnightLeftUp(Left, Up, true),
-    KnightLeftDown(Left, Down, true),
-    KnightRightUp(Right, Up, true),
-    KnightRightDown(Right, Down, true),
-    KnightUpLeft(Up, Left, true),
-    KnightDownLeft(Down, Left, true),
-    KnightUpRight(Up, Right, true),
-    KnightDownRight(Down, Right, true),
+
+    KnightLeftUp(Left, Left, Up),
+    KnightLeftDown(Left, Left, Down),
+    KnightRightUp(Right, Right, Up),
+    KnightRightDown(Right, Right, Down),
+    KnightUpLeft(Up, Up, Left),
+    KnightDownLeft(Down, Down, Left),
+    KnightUpRight(Up, Up, Right),
+    KnightDownRight(Down, Down, Right),
+
+    KingCastleLeft(Left, Left, Left),
+    KingCastleRight(Left, Left),
+
+    RookCastleLeft(Right, Right),
+    RookCastleRight(Right, Right),
     ;
 
     private final int x;
     private final int y;
 
-    Direction(Direction one, Direction two) {
-        this(one, two, false);
-    }
-
-    Direction(Direction one, Direction two, boolean firstCountTwice) {
-        // TODO Check if this is right
-        this.x = one.getX() * (firstCountTwice ? 2 : 1) + two.getX();
-        this.y = one.getY() * (firstCountTwice ? 2 : 1) + two.getY();
+    Direction(Direction ...directions) {
+        int x = 0;
+        int y = 0;
+        for(Direction direction : directions) {
+            x += direction.getX();
+            y += direction.getY();
+        }
+        this.x = x;
+        this.y = y;
     }
 
     Direction(int x, int y) {
