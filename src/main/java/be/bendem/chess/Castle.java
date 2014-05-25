@@ -1,7 +1,6 @@
 package be.bendem.chess;
 
 import be.bendem.chess.pieces.Type;
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -14,14 +13,16 @@ public class Castle {
     private final Move rookMove;
 
     public Castle(Move kingMove, Move rookMove) {
-        Validate.isTrue(kingMove.getPiece().getType() == Type.King);
-        Validate.isTrue(rookMove.getPiece().getType() == Type.Rook);
-        Validate.isTrue(Direction.getKingCastles().contains(kingMove.getDirection()));
-        Validate.isTrue(Direction.getRookCastles().contains(rookMove.getDirection()));
-        Validate.isTrue(kingMove.getDirection().isLeft() != rookMove.getDirection().isLeft());
-
         this.kingMove = kingMove;
         this.rookMove = rookMove;
+    }
+
+    public boolean isValid() {
+        return (kingMove.getPiece().getType() == Type.King)
+            && (rookMove.getPiece().getType() == Type.Rook)
+            && (Direction.getKingCastles().contains(kingMove.getDirection()))
+            && (Direction.getRookCastles().contains(rookMove.getDirection()))
+            && (kingMove.getDirection().isLeft() != rookMove.getDirection().isLeft());
     }
 
     public Move getKingMove() {

@@ -10,6 +10,7 @@ import be.bendem.chess.pieces.Knight;
 import be.bendem.chess.pieces.Pawn;
 import be.bendem.chess.pieces.Queen;
 import be.bendem.chess.pieces.Rook;
+import org.apache.commons.lang3.Validate;
 
 import java.util.Iterator;
 
@@ -51,6 +52,29 @@ public class Board {
         return board[coordinates.getY()][coordinates.getX()];
     }
 
+    public boolean canCastle(Castle castle) {
+        if(!castle.isValid()) {
+            return false;
+        }
+
+        Move kingMove = castle.getKingMove();
+        Move rookMove = castle.getRookMove();
+        if(kingMove.getPiece().hasMoved() || rookMove.getPiece().hasMoved()) {
+            return false;
+        }
+
+        if(!isEmpty(kingMove.getTo()) || !isEmpty(rookMove.getTo())) {
+            return false;
+        }
+
+        if(kingMove.getDirection() == Direction.KingCastleLeft && !isEmpty(new Coordinates(kingMove.getFrom(), Direction.Left))) {
+            return false;
+        }
+
+        // TODO Check if king.getTo or rook.getTo is menaced
+        return true;
+    }
+
     public void move(Move move) {
         Coordinates from = move.getFrom();
         Coordinates to = move.getTo();
@@ -63,6 +87,17 @@ public class Board {
 
     public Move createMove(Coordinates coordinates, Direction direction, int count) {
         return new Move(get(coordinates), coordinates, direction, count);
+    }
+
+    public Castle createCastle(King king, Direction direction) {
+        Validate.isTrue(Direction.getKingCastles().contains(direction));
+
+        Coordinates rookCoord = new Coordinates(direction.isLeft() ? 0 : 7, king.getCoordinates().getY());
+
+        Move kingMove = createMove(king.getCoordinates(), direction, 1);
+        Move rookMove = createMove(rookCoord, direction == Direction.KingCastleLeft ? Direction.RookCastleRight : Direction.RookCastleLeft, 1);
+
+        return new Castle(kingMove, rookMove);
     }
 
     public boolean isEmpty(Coordinates coordinates) {
