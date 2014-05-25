@@ -1,6 +1,7 @@
 package be.bendem.chess;
 
 import be.bendem.chess.pieces.AbstractPiece;
+import org.apache.commons.lang3.Validate;
 
 /**
  * @author bendem
@@ -14,6 +15,8 @@ public class Move {
     protected final Coordinates   to;
 
     public Move(AbstractPiece piece, Coordinates from, Direction direction, int count) {
+        Validate.isTrue(count > 0);
+
         this.piece = piece;
         this.from = from;
         this.direction = direction;
