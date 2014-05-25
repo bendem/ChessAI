@@ -12,6 +12,12 @@ public class Coordinates implements Cloneable {
         this(0, 0);
     }
 
+    public Coordinates(Coordinates coordinates, Direction direction) {
+        x = coordinates.getX();
+        y = coordinates.getY();
+        add(direction);
+    }
+
     public Coordinates(int x, int y) {
         if(overflow(x, y)) {
             throw new IllegalArgumentException("No pointing outside the board");

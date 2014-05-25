@@ -60,6 +60,22 @@ public enum Direction {
         return y;
     }
 
+    public boolean isLeft() {
+        return x < 0;
+    }
+
+    public boolean isRight() {
+        return x > 0;
+    }
+
+    public boolean isUp() {
+        return y < 0;
+    }
+
+    public boolean isDown() {
+        return y > 0;
+    }
+
     public static Set<Direction> getDiagonals() {
         return EnumSet.range(LeftUp, RightDown);
     }
@@ -76,6 +92,20 @@ public enum Direction {
 
     public static Set<Direction> getKnights() {
         return EnumSet.range(KnightLeftUp, KnightDownRight);
+    }
+
+    public static Set<Direction> getKingCastles() {
+        return EnumSet.of(KingCastleLeft, KingCastleRight);
+    }
+
+    public static Set<Direction> getRookCastles() {
+        return EnumSet.range(RookCastleLeft, RookCastleRight);
+    }
+
+    public static Set<Direction> getCastles() {
+        Set<Direction> set = getRookCastles();
+        set.addAll(getKingCastles());
+        return set;
     }
 
 }
