@@ -18,12 +18,14 @@ public abstract class AbstractPiece {
     protected final Color color;
     protected final Coordinates coordinates;
     protected final boolean isMoveCountRestricted;
+    protected final Type type;
     protected boolean hasMoved = false;
 
     protected AbstractPiece(Color color, Coordinates coordinates, boolean isMoveCountRestricted) {
         this.color = color;
         this.coordinates = coordinates;
         this.isMoveCountRestricted = isMoveCountRestricted;
+        this.type = Type.valueOf(getClass().getSimpleName());
     }
 
     public abstract Set<Direction> getAllDirections();
@@ -84,9 +86,17 @@ public abstract class AbstractPiece {
         return isMoveCountRestricted;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public boolean hasMoved() {
+        return hasMoved;
+    }
+
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" + "color=" + color + ", coordinates=" + coordinates + ", hasMoved=" + hasMoved + '}';
+        return type.name() + "{" + "color=" + color + ", coordinates=" + coordinates + ", hasMoved=" + hasMoved + '}';
     }
 
 }
