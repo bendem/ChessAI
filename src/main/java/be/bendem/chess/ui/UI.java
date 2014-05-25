@@ -67,4 +67,8 @@ public class UI extends JFrame {
         return list.get(coordinates.getX() + coordinates.getY());
     }
 
+    public static void main(String[] args) {
+        new UI(new Board());
+    }
+
 }
