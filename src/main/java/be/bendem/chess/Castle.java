@@ -17,6 +17,11 @@ public class Castle {
         this.rookMove = rookMove;
     }
 
+    /**
+     * Checks if the moves are valid independently of the board
+     *
+     * @return true if the moves are valid, false otherwise
+     */
     public boolean isValid() {
         return (kingMove.getPiece().getType() == Type.King)
             && (rookMove.getPiece().getType() == Type.Rook)

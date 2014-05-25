@@ -52,6 +52,12 @@ public class Board {
         return board[coordinates.getY()][coordinates.getX()];
     }
 
+    /**
+     * Check if the castle moves are valid on the board
+     *
+     * @param castle The move to check
+     * @return Returns true if the moves can be executed, false otherwise
+     */
     public boolean canCastle(Castle castle) {
         if(!castle.isValid()) {
             return false;
