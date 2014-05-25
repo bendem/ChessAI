@@ -34,7 +34,6 @@ public class MoveGenerator {
             AbstractPiece piece = pieceIterator.next();
             for(Direction direction : piece.getDirections()) {
                 if(piece.isMoveCountRestricted()) {
-                    // TODO Handle pawn :/
                     // TODO Handle King castling
                     Move move = board.createMove(piece.getCoordinates(), direction, 1);
                     if(piece.canMove(board, move)) {
