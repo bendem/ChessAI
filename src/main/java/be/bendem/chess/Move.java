@@ -7,11 +7,11 @@ import be.bendem.chess.pieces.AbstractPiece;
  */
 public class Move {
 
-    private final AbstractPiece piece;
-    private final Coordinates   from;
-    private final Direction     direction;
-    private final int           count;
-    private final Coordinates   to;
+    protected final AbstractPiece piece;
+    protected final Coordinates   from;
+    protected final Direction     direction;
+    protected final int           count;
+    protected final Coordinates   to;
 
     public Move(AbstractPiece piece, Coordinates from, Direction direction, int count) {
         this.piece = piece;
