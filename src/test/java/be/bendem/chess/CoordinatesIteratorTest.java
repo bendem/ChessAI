@@ -20,15 +20,15 @@ public class CoordinatesIteratorTest {
 
     @Test
     public void testCoordinatesIterator() {
-        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.Up)));
-        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.Left)));
-        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.LeftUp)));
-        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.RightUp)));
-        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.LeftDown)));
+        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(), Direction.Up)));
+        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(), Direction.Left)));
+        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(), Direction.LeftUp)));
+        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(), Direction.RightUp)));
+        Assert.assertEquals(0, iteratorCount(board.iterator(new Coordinates(), Direction.LeftDown)));
 
-        Assert.assertEquals(7, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.Down)));
-        Assert.assertEquals(7, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.Right)));
-        Assert.assertEquals(7, iteratorCount(board.iterator(new Coordinates(0, 0), Direction.RightDown)));
+        Assert.assertEquals(7, iteratorCount(board.iterator(new Coordinates(), Direction.Down)));
+        Assert.assertEquals(7, iteratorCount(board.iterator(new Coordinates(), Direction.Right)));
+        Assert.assertEquals(7, iteratorCount(board.iterator(new Coordinates(), Direction.RightDown)));
     }
 
     private int iteratorCount(Iterator<?> it) {

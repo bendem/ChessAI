@@ -21,7 +21,7 @@ public class CoordinatesTest {
 
     @Test
     public void testAdd() throws Exception {
-        Coordinates coordinates = new Coordinates(0, 0);
+        Coordinates coordinates = new Coordinates();
 
         coordinates.setX(2);
         coordinates.setY(2);
@@ -89,8 +89,8 @@ public class CoordinatesTest {
         Assert.assertFalse(Coordinates.overflow(2, 3));
         Assert.assertFalse(Coordinates.overflow(7, 7));
 
-        Assert.assertTrue(Coordinates.overflow(new Coordinates(0, 0), Direction.Up));
-        Assert.assertFalse(Coordinates.overflow(new Coordinates(0, 0), Direction.Down));
+        Assert.assertTrue(Coordinates.overflow(new Coordinates(), Direction.Up));
+        Assert.assertFalse(Coordinates.overflow(new Coordinates(), Direction.Down));
     }
 
 }

@@ -8,6 +8,10 @@ public class Coordinates implements Cloneable {
     private int x;
     private int y;
 
+    public Coordinates() {
+        this(0, 0);
+    }
+
     public Coordinates(int x, int y) {
         if(overflow(x, y)) {
             throw new IllegalArgumentException("No pointing outside the board");

@@ -20,7 +20,7 @@ public class BoardIterator implements Iterator<AbstractPiece> {
     public BoardIterator(Board board, Filter<AbstractPiece> filter) {
         this.board = board;
         this.filter = filter;
-        current = new Coordinates(0, 0);
+        current = new Coordinates();
         getNext(false);
     }
 
