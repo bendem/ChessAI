@@ -60,7 +60,9 @@ public enum Direction {
     }
 
     public static Set<Direction> getNormals() {
-        return EnumSet.range(Up, RightDown);
+        Set<Direction> set = getStraights();
+        set.addAll(getDiagonals());
+        return set;
     }
 
     public static Set<Direction> getKnights() {
