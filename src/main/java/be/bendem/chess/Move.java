@@ -2,6 +2,8 @@ package be.bendem.chess;
 
 import be.bendem.chess.pieces.AbstractPiece;
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @author bendem
@@ -49,7 +51,7 @@ public class Move {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" + "piece=" + piece + ", from=" + from + ", direction=" + direction + ", count=" + count + ", to=" + to + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
 }

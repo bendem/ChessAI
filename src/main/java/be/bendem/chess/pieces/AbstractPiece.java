@@ -5,6 +5,8 @@ import be.bendem.chess.Color;
 import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -96,7 +98,7 @@ public abstract class AbstractPiece {
 
     @Override
     public String toString() {
-        return type.name() + "{" + "color=" + color + ", coordinates=" + coordinates + ", hasMoved=" + hasMoved + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
 }

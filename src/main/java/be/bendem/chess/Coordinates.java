@@ -1,5 +1,8 @@
 package be.bendem.chess;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * @author bendem
  */
@@ -61,7 +64,7 @@ public class Coordinates implements Cloneable {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" + "x=" + x + ", y=" + y + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
     public static boolean overflow(int x, int y) {
