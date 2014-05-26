@@ -1,7 +1,7 @@
 package be.bendem.chess;
 
 import be.bendem.chess.ai.MoveGenerator;
-import be.bendem.chess.pieces.King;
+import be.bendem.chess.pieces.Type;
 import be.bendem.chess.ui.UI;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class Chess {
             List<Move> generated = moveGenerator.generate(currentColor);
             Move move = generated.get(random.nextInt(generated.size()));
             System.out.println(move);
-            if(board.get(move.getTo()) instanceof King) {
+            if(!board.isEmpty(move.getTo()) && board.get(move.getTo()).getType() == Type.King) {
                 System.out.println(currentColor.name() + " WIN!");
                 break;
             }
