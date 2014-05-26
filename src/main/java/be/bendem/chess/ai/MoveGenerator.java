@@ -7,6 +7,7 @@ import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import be.bendem.chess.filter.ColorFilter;
 import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.utils.Timer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +29,7 @@ public class MoveGenerator {
 
         Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorFilter(color));
 
-        long time = System.nanoTime();
+        Timer.startNanoTimer();
 
         while(pieceIterator.hasNext()) {
             AbstractPiece piece = pieceIterator.next();
@@ -55,7 +56,7 @@ public class MoveGenerator {
             }
         }
 
-        System.out.println(String.valueOf(moves.size()) + " moves generated in " + ((System.nanoTime() - time)/1000) + "µs");
+        System.out.println(String.valueOf(moves.size()) + " moves generated in " + Timer.formatNanoSecs(Timer.stopNanoTimer()));
 
         return moves;
     }
