@@ -10,11 +10,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class Move {
 
-    protected final Piece piece;
-    protected final Coordinates   from;
-    protected final Direction     direction;
-    protected final int           count;
-    protected final Coordinates   to;
+    private final Piece piece;
+    private final Coordinates from;
+    private final Direction direction;
+    private final int count;
+    private final Coordinates to;
 
     public Move(Piece piece, Coordinates from, Direction direction, int count) {
         Validate.isTrue(count > 0);
