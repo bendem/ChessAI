@@ -18,7 +18,7 @@ public class Logger {
     }
 
     public static void info(String str, Object...args) {
-        log(Level.INFO, str);
+        log(Level.INFO, str, args);
     }
 
     public static void warning(String str, Object...args) {

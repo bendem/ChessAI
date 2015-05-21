@@ -34,7 +34,7 @@ public class Chess {
             }
             board.move(move);
             ui.refresh();
-            Thread.sleep(250);
+            Thread.sleep(100);
             currentColor = currentColor == Color.Black ? Color.White : Color.Black;
         }
     }
