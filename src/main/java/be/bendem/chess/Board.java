@@ -2,17 +2,13 @@ package be.bendem.chess;
 
 import be.bendem.chess.iterators.BoardIterator;
 import be.bendem.chess.iterators.CoordinatesIterator;
-import be.bendem.chess.pieces.Piece;
-import be.bendem.chess.pieces.Bishop;
-import be.bendem.chess.pieces.King;
-import be.bendem.chess.pieces.Knight;
-import be.bendem.chess.pieces.Pawn;
-import be.bendem.chess.pieces.Queen;
-import be.bendem.chess.pieces.Rook;
+import be.bendem.chess.pieces.*;
 import org.apache.commons.lang3.Validate;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * @author bendem
@@ -153,8 +149,12 @@ public class Board implements Iterable<Piece> {
         return new CoordinatesIterator(position, direction);
     }
 
+    public Stream<Piece> stream() {
+        return Arrays.stream(this.board).flatMap(Arrays::stream);
+    }
+
     public static boolean isWhite(Position position) {
-        return (position.getX()+ position.getY()) % 2 == 0;
+        return (position.getX() + position.getY()) % 2 == 0;
     }
 
     public static boolean isBlack(Position position) {

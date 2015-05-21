@@ -2,17 +2,18 @@ package be.bendem.chess.ai;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
-import be.bendem.chess.predicates.ColorPredicate;
+import be.bendem.chess.Position;
 import be.bendem.chess.pieces.Piece;
+import be.bendem.chess.predicates.ColorPredicate;
 import be.bendem.chess.utils.Logger;
 import be.bendem.chess.utils.Timer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @author bendem
@@ -20,46 +21,52 @@ import java.util.List;
 public class MoveGenerator {
 
     private final Board board;
+    private final MoveRanker moveRanker;
 
     public MoveGenerator(Board board) {
         this.board = board;
+        this.moveRanker = new MoveRanker(board);
     }
 
-    public List<Move> generate(Color color) {
-        List<Move> moves = new ArrayList<>();
-
-        Iterator<Piece> pieceIterator = board.iterator(new ColorPredicate(color));
-
+    public Stream<Move> generate(Color color) {
         Timer.startNanoTimer();
 
-        while(pieceIterator.hasNext()) {
-            Piece piece = pieceIterator.next();
-            for(Direction direction : piece.getDirections()) {
-                if(piece.isMoveCountRestricted()) {
-                    // TODO Handle King castling
-                    Move move = board.createMove(piece.getPosition(), direction, 1);
-                    if(piece.canMove(board, move)) {
-                        moves.add(move);
-                    }
+        Stream<Move> moves = board.stream()
+            .filter(ColorPredicate.of(color))
+            .map(this::generateMovesForPiece)
+            .flatMap(pieces -> pieces)
+            .filter(move -> move.getPiece().canMove(board, move))
+            .sorted(moveRanker::compare)
+            ;
 
-                } else {
-                    Iterator<Position> coordinatesIterator = board.iterator(piece.getPosition(), direction);
-                    int count = 0;
-                    while(coordinatesIterator.hasNext()) {
-                        coordinatesIterator.next();
-                        ++count;
-                        Move move = board.createMove(piece.getPosition(), direction, count);
-                        if(piece.canMove(board, move)) {
-                            moves.add(move);
-                        }
-                    }
-                }
-            }
-        }
-
-        Logger.debug("%d moves generated in %s", moves.size(), Timer.formatNanoSecs(Timer.stopNanoTimer()));
+        Logger.debug("moves generated in %s", Timer.formatNanoSecs(Timer.stopNanoTimer()));
 
         return moves;
+    }
+
+    private Stream<Move> generateMovesForPiece(Piece piece) {
+        if(piece.isMoveCountRestricted()) {
+            // TODO Handle King castling
+            return piece.getDirections().stream()
+                .map(direction -> board.createMove(piece.getPosition(), direction, 1));
+        }
+
+        return piece.getDirections().stream()
+            .flatMap(direction -> generateMovesForDirection(piece, direction));
+    }
+
+    private Stream<Move> generateMovesForDirection(Piece piece, Direction direction) {
+        List<Move> moves = new ArrayList<>();
+        Iterator<Position> coordinatesIterator = board.iterator(piece.getPosition(), direction);
+        int count = 0;
+
+        while(coordinatesIterator.hasNext()) {
+            coordinatesIterator.next();
+            ++count;
+            moves.add(board.createMove(piece.getPosition(), direction, count));
+        }
+
+        return moves.stream();
     }
 
 }

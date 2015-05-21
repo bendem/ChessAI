@@ -6,11 +6,12 @@ import be.bendem.chess.pieces.Piece;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * @author bendem
  */
-public class ColorPredicate extends PiecePredicate {
+public class ColorPredicate implements Predicate<Piece> {
 
     private final Color color;
 
@@ -20,7 +21,7 @@ public class ColorPredicate extends PiecePredicate {
 
     @Override
     public boolean test(Piece element) {
-        return super.test(element) && element.getColor() == color;
+        return element != null && element.getColor() == color;
     }
 
     private static final Map<Color, ColorPredicate> PREDICATES;

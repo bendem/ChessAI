@@ -7,7 +7,7 @@ import be.bendem.chess.ui.UI;
 import be.bendem.chess.utils.Logger;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -20,13 +20,17 @@ public class Chess {
         MoveGenerator moveGenerator = new MoveGenerator(board);
         Color currentColor = Color.White;
         UI ui = new UI(board);
-        Random random = new Random();
 
         for(int i = 0; i < 300; i++) {
             Logger.debug("Turn %d", i);
 
-            List<Move> generated = moveGenerator.generate(currentColor);
-            Move move = generated.get(random.nextInt(generated.size()));
+            Optional<Move> optMove = moveGenerator.generate(currentColor).findFirst();
+            if(!optMove.isPresent()) {
+                Logger.info("Can't move anymore");
+                break;
+            }
+            Move move = optMove.get();
+
             Piece piece = board.get(move.getTo());
 
             if(piece != null && piece.getType() == Type.King) {

@@ -1,7 +1,7 @@
 package be.bendem.chess;
 
 import be.bendem.chess.predicates.ColorPredicate;
-import be.bendem.chess.predicates.PiecePredicate;
+import be.bendem.chess.predicates.NotNullPredicate;
 import be.bendem.chess.pieces.Piece;
 import org.junit.Assert;
 import org.junit.Before;
@@ -55,7 +55,7 @@ public class BoardIteratorTest {
 
     @Test
     public void testBoardIteratorPieceFilter() throws Exception {
-        Iterator<Piece> pieceIterator = board.iterator(new PiecePredicate());
+        Iterator<Piece> pieceIterator = board.iterator(NotNullPredicate.get());
         int count = 0;
         while(pieceIterator.hasNext()) {
             ++count;
