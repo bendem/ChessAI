@@ -5,7 +5,7 @@ import be.bendem.chess.Color;
 import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
-import be.bendem.chess.filter.ColorFilter;
+import be.bendem.chess.filter.ColorPredicate;
 import be.bendem.chess.pieces.AbstractPiece;
 import be.bendem.chess.utils.Timer;
 
@@ -27,7 +27,7 @@ public class MoveGenerator {
     public List<Move> generate(Color color) {
         List<Move> moves = new ArrayList<>();
 
-        Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorFilter(color));
+        Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorPredicate(color));
 
         Timer.startNanoTimer();
 

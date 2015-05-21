@@ -6,17 +6,17 @@ import be.bendem.chess.pieces.AbstractPiece;
 /**
  * @author bendem
  */
-public class ColorFilter extends PieceFilter {
+public class ColorPredicate extends PiecePredicate {
 
     private final Color color;
 
-    public ColorFilter(Color color) {
+    public ColorPredicate(Color color) {
         this.color = color;
     }
 
     @Override
-    public boolean keep(AbstractPiece element) {
-        return super.keep(element) && element.getColor() == color;
+    public boolean test(AbstractPiece element) {
+        return super.test(element) && element.getColor() == color;
     }
 
 }

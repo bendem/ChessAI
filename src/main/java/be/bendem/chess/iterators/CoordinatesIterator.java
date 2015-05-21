@@ -29,9 +29,4 @@ public class CoordinatesIterator implements Iterator<Coordinates> {
         return current.clone();
     }
 
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
 }

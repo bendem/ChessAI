@@ -2,10 +2,10 @@ package be.bendem.chess.iterators;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Coordinates;
-import be.bendem.chess.filter.Filter;
 import be.bendem.chess.pieces.AbstractPiece;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 /**
  * @author bendem
@@ -13,11 +13,11 @@ import java.util.Iterator;
 public class BoardIterator implements Iterator<AbstractPiece> {
 
     private final Board board;
-    private final Filter<AbstractPiece> filter;
+    private final Predicate<AbstractPiece> filter;
     private Coordinates current;
     private boolean hasNext;
 
-    public BoardIterator(Board board, Filter<AbstractPiece> filter) {
+    public BoardIterator(Board board, Predicate<AbstractPiece> filter) {
         this.board = board;
         this.filter = filter;
         current = new Coordinates();
@@ -36,11 +36,6 @@ public class BoardIterator implements Iterator<AbstractPiece> {
         return piece;
     }
 
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-
     private void getNext(boolean ignoreCurrent) {
         if(ignoreCurrent) {
             if(!incrementCurrent()) {
@@ -49,7 +44,7 @@ public class BoardIterator implements Iterator<AbstractPiece> {
             }
         }
 
-        while(filter != null && !filter.keep(board.get(current))) {
+        while(filter != null && !filter.test(board.get(current))) {
             if(!incrementCurrent()) {
                 hasNext = false;
                 return;

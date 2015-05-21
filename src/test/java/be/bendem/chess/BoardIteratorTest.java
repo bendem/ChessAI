@@ -1,7 +1,7 @@
 package be.bendem.chess;
 
-import be.bendem.chess.filter.ColorFilter;
-import be.bendem.chess.filter.PieceFilter;
+import be.bendem.chess.filter.ColorPredicate;
+import be.bendem.chess.filter.PiecePredicate;
 import be.bendem.chess.pieces.AbstractPiece;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -40,7 +40,7 @@ public class BoardIteratorTest {
     @Test
     public void testBoardIteratorColorFilter() throws Exception {
         for(Color color : Color.values()) {
-            Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorFilter(color));
+            Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorPredicate(color));
             int count = 0;
             while(pieceIterator.hasNext()) {
                 ++count;
@@ -55,7 +55,7 @@ public class BoardIteratorTest {
 
     @Test
     public void testBoardIteratorPieceFilter() throws Exception {
-        Iterator<AbstractPiece> pieceIterator = board.iterator(new PieceFilter());
+        Iterator<AbstractPiece> pieceIterator = board.iterator(new PiecePredicate());
         int count = 0;
         while(pieceIterator.hasNext()) {
             ++count;

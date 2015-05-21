@@ -1,6 +1,5 @@
 package be.bendem.chess;
 
-import be.bendem.chess.filter.Filter;
 import be.bendem.chess.iterators.BoardIterator;
 import be.bendem.chess.iterators.CoordinatesIterator;
 import be.bendem.chess.pieces.AbstractPiece;
@@ -13,6 +12,7 @@ import be.bendem.chess.pieces.Rook;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 /**
  * @author bendem
@@ -114,7 +114,7 @@ public class Board {
         return iterator(null);
     }
 
-    public Iterator<AbstractPiece> iterator(Filter<AbstractPiece> filter) {
+    public Iterator<AbstractPiece> iterator(Predicate<AbstractPiece> filter) {
         return new BoardIterator(this, filter);
     }
 
