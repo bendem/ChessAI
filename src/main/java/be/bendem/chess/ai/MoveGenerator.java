@@ -5,7 +5,7 @@ import be.bendem.chess.Color;
 import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
-import be.bendem.chess.filter.ColorPredicate;
+import be.bendem.chess.predicates.ColorPredicate;
 import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.utils.Timer;
 

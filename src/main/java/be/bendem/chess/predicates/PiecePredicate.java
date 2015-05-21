@@ -1,4 +1,4 @@
-package be.bendem.chess.filter;
+package be.bendem.chess.predicates;
 
 import be.bendem.chess.pieces.Piece;
 

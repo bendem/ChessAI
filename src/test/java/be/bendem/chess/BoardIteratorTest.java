@@ -1,7 +1,7 @@
 package be.bendem.chess;
 
-import be.bendem.chess.filter.ColorPredicate;
-import be.bendem.chess.filter.PiecePredicate;
+import be.bendem.chess.predicates.ColorPredicate;
+import be.bendem.chess.predicates.PiecePredicate;
 import be.bendem.chess.pieces.Piece;
 import org.junit.Assert;
 import org.junit.Before;
