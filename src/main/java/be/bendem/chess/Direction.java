@@ -12,40 +12,29 @@ public enum Direction {
     Left(-1, 0),
     Right(1, 0),
 
-    LeftUp(Left, Up),
-    LeftDown(Left, Down),
-    RightUp(Right, Up),
-    RightDown(Right, Down),
+    LeftUp(-1, -1),
+    LeftDown(-1, 1),
+    RightUp(1, -1),
+    RightDown(1, 1),
 
-    KnightLeftUp(Left, Left, Up),
-    KnightLeftDown(Left, Left, Down),
-    KnightRightUp(Right, Right, Up),
-    KnightRightDown(Right, Right, Down),
-    KnightUpLeft(Up, Up, Left),
-    KnightDownLeft(Down, Down, Left),
-    KnightUpRight(Up, Up, Right),
-    KnightDownRight(Down, Down, Right),
+    KnightLeftUp(-2, -1),
+    KnightLeftDown(-2, 1),
+    KnightRightUp(2, -1),
+    KnightRightDown(2, 1),
+    KnightUpLeft(-1, -2),
+    KnightDownLeft(-1, 2),
+    KnightUpRight(1, -2),
+    KnightDownRight(1, 2),
 
-    KingCastleLeft(Left, Left, Left),
-    KingCastleRight(Left, Left),
+    KingCastleLeft(-3, 0),
+    KingCastleRight(2, 0),
 
-    RookCastleLeft(Right, Right),
-    RookCastleRight(Right, Right),
+    RookCastleLeft(-2, 0),
+    RookCastleRight(2, 0),
     ;
 
     private final int x;
     private final int y;
-
-    Direction(Direction ...directions) {
-        int x = 0;
-        int y = 0;
-        for(Direction direction : directions) {
-            x += direction.getX();
-            y += direction.getY();
-        }
-        this.x = x;
-        this.y = y;
-    }
 
     Direction(int x, int y) {
         this.x = x;
