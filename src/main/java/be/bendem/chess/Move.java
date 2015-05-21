@@ -11,19 +11,19 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Move {
 
     private final Piece piece;
-    private final Coordinates from;
+    private final Position from;
     private final Direction direction;
     private final int count;
-    private final Coordinates to;
+    private final Position to;
 
-    public Move(Piece piece, Coordinates from, Direction direction, int count) {
+    public Move(Piece piece, Position from, Direction direction, int count) {
         Validate.isTrue(count > 0);
 
         this.piece = piece;
         this.from = from;
         this.direction = direction;
         this.count = count;
-        this.to = new Coordinates(from);
+        this.to = new Position(from);
 
         for(int i = 0; i < count; i++) {
             to.add(direction);
@@ -34,11 +34,11 @@ public class Move {
         return piece;
     }
 
-    public Coordinates getFrom() {
+    public Position getFrom() {
         return from;
     }
 
-    public Coordinates getTo() {
+    public Position getTo() {
         return to;
     }
 

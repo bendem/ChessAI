@@ -1,6 +1,6 @@
 package be.bendem.chess.iterators;
 
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 
 import java.util.Iterator;
@@ -8,25 +8,25 @@ import java.util.Iterator;
 /**
  * @author bendem
  */
-public class CoordinatesIterator implements Iterator<Coordinates> {
+public class CoordinatesIterator implements Iterator<Position> {
 
-    private final Coordinates current;
+    private final Position current;
     private final Direction direction;
 
-    public CoordinatesIterator(Coordinates coordinates, Direction direction) {
+    public CoordinatesIterator(Position position, Direction direction) {
         this.direction = direction;
-        this.current = new Coordinates(coordinates);
+        this.current = new Position(position);
     }
 
     @Override
     public boolean hasNext() {
-        return !Coordinates.overflow(current, direction);
+        return !Position.overflow(current, direction);
     }
 
     @Override
-    public Coordinates next() {
+    public Position next() {
         current.add(direction);
-        return new Coordinates(current);
+        return new Position(current);
     }
 
 }

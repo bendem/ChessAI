@@ -1,7 +1,7 @@
 package be.bendem.chess.ui;
 
 import be.bendem.chess.Board;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.pieces.Piece;
 
 import javax.swing.JFrame;
@@ -33,7 +33,7 @@ public class UI extends JFrame {
             x.setHorizontalAlignment(JLabel.CENTER);
             x.setVerticalAlignment(JLabel.CENTER);
             x.setOpaque(true);
-            if(Board.isWhite(new Coordinates(i % 8, i / 8))) {
+            if(Board.isWhite(new Position(i % 8, i / 8))) {
                 x.setBackground(Color.LIGHT_GRAY);
             } else {
                 x.setBackground(Color.DARK_GRAY);
@@ -53,7 +53,7 @@ public class UI extends JFrame {
     public void refresh() {
         for(int i = 0; i < 64; i++) {
             JLabel x = list.get(i);
-            Piece piece = board.get(new Coordinates(i % 8, i / 8));
+            Piece piece = board.get(new Position(i % 8, i / 8));
             if(piece == null) {
                 x.setText("");
             } else {
@@ -63,8 +63,8 @@ public class UI extends JFrame {
         }
     }
 
-    public JLabel get(Coordinates coordinates) {
-        return list.get(coordinates.getX() + coordinates.getY());
+    public JLabel get(Position position) {
+        return list.get(position.getX() + position.getY());
     }
 
     public static void main(String[] args) {

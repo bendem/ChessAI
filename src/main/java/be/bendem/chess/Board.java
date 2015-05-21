@@ -37,7 +37,7 @@ public class Board implements Iterable<Piece> {
         if(row == 1 || row == 6) {
             Direction direction = row == 1 ? Direction.Down : Direction.Up;
             for(int i = 0; i < WIDTH; i++) {
-                board[row][i] = new Pawn(color, direction, new Coordinates(i, row));
+                board[row][i] = new Pawn(color, direction, new Position(i, row));
             }
             return;
         }
@@ -46,28 +46,28 @@ public class Board implements Iterable<Piece> {
             switch(i) {
                 case 0:
                 case 7:
-                    board[row][i] = new Rook(color, new Coordinates(i, row));
+                    board[row][i] = new Rook(color, new Position(i, row));
                     break;
                 case 1:
                 case 6:
-                    board[row][i] = new Knight(color, new Coordinates(i, row));
+                    board[row][i] = new Knight(color, new Position(i, row));
                     break;
                 case 2:
                 case 5:
-                    board[row][i] = new Bishop(color, new Coordinates(i, row));
+                    board[row][i] = new Bishop(color, new Position(i, row));
                     break;
                 case 3:
-                    board[row][i] = new Queen(color, new Coordinates(i, row));
+                    board[row][i] = new Queen(color, new Position(i, row));
                     break;
                 case 4:
-                    board[row][i] = new King(color, new Coordinates(i, row));
+                    board[row][i] = new King(color, new Position(i, row));
                     break;
             }
         }
     }
 
-    public Piece get(Coordinates coordinates) {
-        return board[coordinates.getY()][coordinates.getX()];
+    public Piece get(Position position) {
+        return board[position.getY()][position.getX()];
     }
 
     /**
@@ -91,7 +91,7 @@ public class Board implements Iterable<Piece> {
             return false;
         }
 
-        if(kingMove.getDirection() == Direction.KingCastleLeft && !isEmpty(new Coordinates(kingMove.getFrom(), Direction.Left))) {
+        if(kingMove.getDirection() == Direction.KingCastleLeft && !isEmpty(new Position(kingMove.getFrom(), Direction.Left))) {
             return false;
         }
 
@@ -100,8 +100,8 @@ public class Board implements Iterable<Piece> {
     }
 
     public void move(Move move) {
-        Coordinates from = move.getFrom();
-        Coordinates to = move.getTo();
+        Position from = move.getFrom();
+        Position to = move.getTo();
 
         board[to.getY()][to.getX()] = board[from.getY()][from.getX()];
         board[from.getY()][from.getX()] = null;
@@ -109,23 +109,23 @@ public class Board implements Iterable<Piece> {
         move.getPiece().move(to);
     }
 
-    public Move createMove(Coordinates coordinates, Direction direction, int count) {
-        return new Move(get(coordinates), coordinates, direction, count);
+    public Move createMove(Position position, Direction direction, int count) {
+        return new Move(get(position), position, direction, count);
     }
 
     public Castle createCastle(King king, Direction direction) {
         Validate.isTrue(Direction.getKingCastles().contains(direction));
 
-        Coordinates rookCoord = new Coordinates(direction.isLeft() ? 0 : 7, king.getCoordinates().getY());
+        Position rookCoord = new Position(direction.isLeft() ? 0 : 7, king.getPosition().getY());
 
-        Move kingMove = createMove(king.getCoordinates(), direction, 1);
+        Move kingMove = createMove(king.getPosition(), direction, 1);
         Move rookMove = createMove(rookCoord, direction == Direction.KingCastleLeft ? Direction.RookCastleRight : Direction.RookCastleLeft, 1);
 
         return new Castle(kingMove, rookMove);
     }
 
-    public boolean isEmpty(Coordinates coordinates) {
-        return get(coordinates) == null;
+    public boolean isEmpty(Position position) {
+        return get(position) == null;
     }
 
     @Override
@@ -137,16 +137,16 @@ public class Board implements Iterable<Piece> {
         return new BoardIterator(this, filter);
     }
 
-    public Iterator<Coordinates> iterator(Coordinates coordinates, Direction direction) {
-        return new CoordinatesIterator(coordinates, direction);
+    public Iterator<Position> iterator(Position position, Direction direction) {
+        return new CoordinatesIterator(position, direction);
     }
 
-    public static boolean isWhite(Coordinates coordinates) {
-        return (coordinates.getX()+coordinates.getY()) % 2 == 0;
+    public static boolean isWhite(Position position) {
+        return (position.getX()+ position.getY()) % 2 == 0;
     }
 
-    public static boolean isBlack(Coordinates coordinates) {
-        return !isWhite(coordinates);
+    public static boolean isBlack(Position position) {
+        return !isWhite(position);
     }
 
 }

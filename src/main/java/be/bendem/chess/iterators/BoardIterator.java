@@ -1,7 +1,7 @@
 package be.bendem.chess.iterators;
 
 import be.bendem.chess.Board;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.pieces.Piece;
 
 import java.util.Iterator;
@@ -14,13 +14,13 @@ public class BoardIterator implements Iterator<Piece> {
 
     private final Board board;
     private final Predicate<Piece> filter;
-    private Coordinates current;
+    private Position current;
     private boolean hasNext;
 
     public BoardIterator(Board board, Predicate<Piece> filter) {
         this.board = board;
         this.filter = filter;
-        current = new Coordinates();
+        current = new Position();
         getNext(false);
     }
 

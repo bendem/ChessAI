@@ -2,7 +2,7 @@ package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -18,14 +18,14 @@ import java.util.Set;
 public abstract class Piece {
 
     protected final Color color;
-    protected final Coordinates coordinates;
+    protected final Position position;
     protected final boolean isMoveCountRestricted;
     protected final Type type;
     protected boolean hasMoved = false;
 
-    protected Piece(Color color, Coordinates coordinates, boolean isMoveCountRestricted) {
+    protected Piece(Color color, Position position, boolean isMoveCountRestricted) {
         this.color = color;
-        this.coordinates = coordinates;
+        this.position = position;
         this.isMoveCountRestricted = isMoveCountRestricted;
         this.type = Type.valueOf(getClass().getSimpleName());
     }
@@ -37,11 +37,11 @@ public abstract class Piece {
             return false;
         }
 
-        Iterator<Coordinates> it = board.iterator(move.getFrom(), move.getDirection());
+        Iterator<Position> it = board.iterator(move.getFrom(), move.getDirection());
         int count = 0;
 
         while(it.hasNext() && count < move.getCount()) {
-            Coordinates current = it.next();
+            Position current = it.next();
             ++count;
 
             if(!board.isEmpty(current)) {
@@ -62,7 +62,7 @@ public abstract class Piece {
 
         Iterator<Direction> iterator = directions.iterator();
         while(iterator.hasNext()) {
-            if(Coordinates.overflow(coordinates, iterator.next())) {
+            if(Position.overflow(position, iterator.next())) {
                 iterator.remove();
             }
         }
@@ -70,9 +70,9 @@ public abstract class Piece {
         return Collections.unmodifiableSet(directions);
     }
 
-    public void move(Coordinates to) {
-        coordinates.setX(to.getX());
-        coordinates.setY(to.getY());
+    public void move(Position to) {
+        position.setX(to.getX());
+        position.setY(to.getY());
         hasMoved = true;
     }
 
@@ -80,8 +80,8 @@ public abstract class Piece {
         return color;
     }
 
-    public Coordinates getCoordinates() {
-        return coordinates;
+    public Position getPosition() {
+        return position;
     }
 
     public boolean isMoveCountRestricted() {

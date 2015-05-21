@@ -6,25 +6,25 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @author bendem
  */
-public class Coordinates {
+public class Position {
 
     private int x;
     private int y;
 
-    public Coordinates() {
+    public Position() {
         this(0, 0);
     }
 
-    public Coordinates(Coordinates coordinates) {
-        this(coordinates.getX(), coordinates.getY());
+    public Position(Position position) {
+        this(position.getX(), position.getY());
     }
 
-    public Coordinates(Coordinates coordinates, Direction direction) {
-        this(coordinates.getX(), coordinates.getY());
+    public Position(Position position, Direction direction) {
+        this(position.getX(), position.getY());
         add(direction);
     }
 
-    public Coordinates(int x, int y) {
+    public Position(int x, int y) {
         if(overflow(x, y)) {
             throw new IllegalArgumentException("No pointing outside the board");
         }
@@ -69,8 +69,8 @@ public class Coordinates {
         return overflow(x + direction.getX(), y + direction.getY());
     }
 
-    public static boolean overflow(Coordinates coordinates, Direction direction) {
-        return overflow(coordinates.getX(), coordinates.getY(), direction);
+    public static boolean overflow(Position position, Direction direction) {
+        return overflow(position.getX(), position.getY(), direction);
     }
 
 }

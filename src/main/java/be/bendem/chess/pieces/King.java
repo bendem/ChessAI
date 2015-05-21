@@ -2,7 +2,7 @@ package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 
@@ -13,8 +13,8 @@ import java.util.Set;
  */
 public class King extends Piece {
 
-    public King(Color color, Coordinates coordinates) {
-        super(color, coordinates, true);
+    public King(Color color, Position position) {
+        super(color, position, true);
     }
 
     @Override

@@ -2,7 +2,7 @@ package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 
@@ -16,8 +16,8 @@ public class Pawn extends Piece {
 
     private Direction direction;
 
-    public Pawn(Color color, Direction direction, Coordinates coordinates) {
-        super(color, coordinates, true);
+    public Pawn(Color color, Direction direction, Position position) {
+        super(color, position, true);
         this.direction = direction;
     }
 
@@ -34,7 +34,7 @@ public class Pawn extends Piece {
             return false;
         }
 
-        if(Coordinates.overflow(coordinates, moveDirection)) {
+        if(Position.overflow(position, moveDirection)) {
             return false;
         }
 

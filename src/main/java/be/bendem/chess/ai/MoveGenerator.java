@@ -2,7 +2,7 @@ package be.bendem.chess.ai;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import be.bendem.chess.filter.ColorPredicate;
@@ -36,18 +36,18 @@ public class MoveGenerator {
             for(Direction direction : piece.getDirections()) {
                 if(piece.isMoveCountRestricted()) {
                     // TODO Handle King castling
-                    Move move = board.createMove(piece.getCoordinates(), direction, 1);
+                    Move move = board.createMove(piece.getPosition(), direction, 1);
                     if(piece.canMove(board, move)) {
                         moves.add(move);
                     }
 
                 } else {
-                    Iterator<Coordinates> coordinatesIterator = board.iterator(piece.getCoordinates(), direction);
+                    Iterator<Position> coordinatesIterator = board.iterator(piece.getPosition(), direction);
                     int count = 0;
                     while(coordinatesIterator.hasNext()) {
                         coordinatesIterator.next();
                         ++count;
-                        Move move = board.createMove(piece.getCoordinates(), direction, count);
+                        Move move = board.createMove(piece.getPosition(), direction, count);
                         if(piece.canMove(board, move)) {
                             moves.add(move);
                         }

@@ -2,7 +2,7 @@ package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Coordinates;
+import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import org.junit.Assert;
@@ -16,13 +16,13 @@ public class PawnTest {
 
     @Before
     public void setUp() throws Exception {
-        pawn = new Pawn(Color.Black, Direction.Down, new Coordinates(0, 1));
+        pawn = new Pawn(Color.Black, Direction.Down, new Position(0, 1));
     }
 
     @Test
     public void testCanMove() throws Exception {
-        Assert.assertFalse(pawn.canMove(board, new Move(pawn, pawn.getCoordinates(), Direction.Up, 1)));
-        Assert.assertTrue(pawn.canMove(board, new Move(pawn, pawn.getCoordinates(), Direction.Down, 1)));
+        Assert.assertFalse(pawn.canMove(board, new Move(pawn, pawn.getPosition(), Direction.Up, 1)));
+        Assert.assertTrue(pawn.canMove(board, new Move(pawn, pawn.getPosition(), Direction.Down, 1)));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class PawnTest {
     public void testIsMoveCountRestricted() throws Exception {
         Assert.assertFalse(pawn.isMoveCountRestricted());
 
-        pawn.move(new Coordinates(0, 2));
+        pawn.move(new Position(0, 2));
         Assert.assertTrue(pawn.isMoveCountRestricted());
     }
 
