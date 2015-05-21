@@ -22,18 +22,21 @@ public class UI extends JFrame {
 
     public UI(Board board) {
         super("Chess UI");
+
         this.board = board;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(8, 8));
+
         list = new ArrayList<>();
+        Dimension labelDimension = new Dimension(75, 75);
 
         for(int i = 0; i < 64; i++) {
             JLabel x = new JLabel();
-            x.setPreferredSize(new Dimension(75, 75));
+            x.setPreferredSize(labelDimension);
             x.setHorizontalAlignment(JLabel.CENTER);
             x.setVerticalAlignment(JLabel.CENTER);
             x.setOpaque(true);
-            if(Board.isWhite(new Position(i % 8, i / 8))) {
+            if(Board.isWhite(new Position(i % Board.WIDTH, i / Board.HEIGHT))) {
                 x.setBackground(Color.LIGHT_GRAY);
             } else {
                 x.setBackground(Color.DARK_GRAY);
@@ -51,9 +54,13 @@ public class UI extends JFrame {
     }
 
     public void refresh() {
+        Position pos = new Position();
+
         for(int i = 0; i < 64; i++) {
             JLabel x = list.get(i);
-            Piece piece = board.get(new Position(i % 8, i / 8));
+            pos.setX(i % Board.WIDTH);
+            pos.setY(i / Board.HEIGHT);
+            Piece piece = board.get(pos);
             if(piece == null) {
                 x.setText("");
             } else {
@@ -61,10 +68,6 @@ public class UI extends JFrame {
                 x.setText(piece.getClass().getSimpleName().toUpperCase().substring(0, 2));
             }
         }
-    }
-
-    public JLabel get(Position position) {
-        return list.get(position.getX() + position.getY());
     }
 
     public static void main(String[] args) {

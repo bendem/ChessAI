@@ -40,7 +40,7 @@ public class BoardIteratorTest {
     @Test
     public void testBoardIteratorColorFilter() throws Exception {
         for(Color color : Color.values()) {
-            Iterator<Piece> pieceIterator = board.iterator(new ColorPredicate(color));
+            Iterator<Piece> pieceIterator = board.iterator(ColorPredicate.of(color));
             int count = 0;
             while(pieceIterator.hasNext()) {
                 ++count;

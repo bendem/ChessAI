@@ -71,8 +71,7 @@ public abstract class Piece {
     }
 
     public void move(Position to) {
-        position.setX(to.getX());
-        position.setY(to.getY());
+        position.set(to);
         hasMoved = true;
     }
 

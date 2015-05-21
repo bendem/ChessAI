@@ -56,6 +56,11 @@ public class Position {
         this.y = y;
     }
 
+    public void set(Position position) {
+        this.x = position.x;
+        this.y = position.y;
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

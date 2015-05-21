@@ -24,17 +24,25 @@ public class Chess {
 
         for(int i = 0; i < 300; i++) {
             Logger.debug("Turn %d", i);
+
             List<Move> generated = moveGenerator.generate(currentColor);
             Move move = generated.get(random.nextInt(generated.size()));
-            Logger.debug(move.toString());
             Piece piece = board.get(move.getTo());
+
             if(piece != null && piece.getType() == Type.King) {
                 Logger.info("%s WIN!", currentColor.name());
                 break;
             }
             board.move(move);
             ui.refresh();
+
+            Logger.debug("%s (%s) from %s to %s",
+                move.getPiece().getType(),
+                move.getPiece().getColor(),
+                move.getFrom(),
+                move.getTo());
             Thread.sleep(100);
+
             currentColor = currentColor == Color.Black ? Color.White : Color.Black;
         }
     }
