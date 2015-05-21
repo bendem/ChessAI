@@ -30,6 +30,8 @@ public class MoveRanker {
             case Pawn:
                 return 5;
         }
+
+        throw new AssertionError();
     }
 
     public int compare(Move move1, Move move2) {
