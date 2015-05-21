@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * @author bendem
  */
-public abstract class AbstractPiece {
+public abstract class Piece {
 
     protected final Color color;
     protected final Coordinates coordinates;
@@ -23,7 +23,7 @@ public abstract class AbstractPiece {
     protected final Type type;
     protected boolean hasMoved = false;
 
-    protected AbstractPiece(Color color, Coordinates coordinates, boolean isMoveCountRestricted) {
+    protected Piece(Color color, Coordinates coordinates, boolean isMoveCountRestricted) {
         this.color = color;
         this.coordinates = coordinates;
         this.isMoveCountRestricted = isMoveCountRestricted;
@@ -45,7 +45,7 @@ public abstract class AbstractPiece {
             ++count;
 
             if(!board.isEmpty(current)) {
-                AbstractPiece piece = board.get(current);
+                Piece piece = board.get(current);
                 if(piece.getColor() == move.getPiece().getColor()) {
                     return false;
                 } else {

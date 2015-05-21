@@ -1,7 +1,7 @@
 package be.bendem.chess.filter;
 
 import be.bendem.chess.Color;
-import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.pieces.Piece;
 
 /**
  * @author bendem
@@ -15,7 +15,7 @@ public class ColorPredicate extends PiecePredicate {
     }
 
     @Override
-    public boolean test(AbstractPiece element) {
+    public boolean test(Piece element) {
         return super.test(element) && element.getColor() == color;
     }
 

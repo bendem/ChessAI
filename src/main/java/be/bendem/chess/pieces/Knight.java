@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * @author bendem
  */
-public class Knight extends AbstractPiece {
+public class Knight extends Piece {
 
     public Knight(Color color, Coordinates coordinates) {
         super(color, coordinates, true);

@@ -2,7 +2,7 @@ package be.bendem.chess.ui;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Coordinates;
-import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.pieces.Piece;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,7 +53,7 @@ public class UI extends JFrame {
     public void refresh() {
         for(int i = 0; i < 64; i++) {
             JLabel x = list.get(i);
-            AbstractPiece piece = board.get(new Coordinates(i % 8, i / 8));
+            Piece piece = board.get(new Coordinates(i % 8, i / 8));
             if(piece == null) {
                 x.setText("");
             } else {

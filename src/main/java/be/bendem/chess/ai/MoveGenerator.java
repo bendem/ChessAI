@@ -6,7 +6,7 @@ import be.bendem.chess.Coordinates;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import be.bendem.chess.filter.ColorPredicate;
-import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.utils.Timer;
 
 import java.util.ArrayList;
@@ -27,12 +27,12 @@ public class MoveGenerator {
     public List<Move> generate(Color color) {
         List<Move> moves = new ArrayList<>();
 
-        Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorPredicate(color));
+        Iterator<Piece> pieceIterator = board.iterator(new ColorPredicate(color));
 
         Timer.startNanoTimer();
 
         while(pieceIterator.hasNext()) {
-            AbstractPiece piece = pieceIterator.next();
+            Piece piece = pieceIterator.next();
             for(Direction direction : piece.getDirections()) {
                 if(piece.isMoveCountRestricted()) {
                     // TODO Handle King castling

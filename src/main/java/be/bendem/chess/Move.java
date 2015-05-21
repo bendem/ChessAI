@@ -1,6 +1,6 @@
 package be.bendem.chess;
 
-import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.pieces.Piece;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -10,13 +10,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class Move {
 
-    protected final AbstractPiece piece;
+    protected final Piece piece;
     protected final Coordinates   from;
     protected final Direction     direction;
     protected final int           count;
     protected final Coordinates   to;
 
-    public Move(AbstractPiece piece, Coordinates from, Direction direction, int count) {
+    public Move(Piece piece, Coordinates from, Direction direction, int count) {
         Validate.isTrue(count > 0);
 
         this.piece = piece;
@@ -29,7 +29,7 @@ public class Move {
         }
     }
 
-    public AbstractPiece getPiece() {
+    public Piece getPiece() {
         return piece;
     }
 

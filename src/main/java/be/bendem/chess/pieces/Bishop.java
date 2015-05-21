@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * @author bendem
  */
-public class Bishop extends AbstractPiece {
+public class Bishop extends Piece {
 
     public Bishop(Color color, Coordinates coordinates) {
         super(color, coordinates, false);

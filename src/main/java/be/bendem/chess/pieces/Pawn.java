@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * @author bendem
  */
-public class Pawn extends AbstractPiece {
+public class Pawn extends Piece {
 
     private Direction direction;
 

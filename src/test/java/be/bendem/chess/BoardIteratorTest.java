@@ -2,7 +2,7 @@ package be.bendem.chess;
 
 import be.bendem.chess.filter.ColorPredicate;
 import be.bendem.chess.filter.PiecePredicate;
-import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.pieces.Piece;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class BoardIteratorTest {
 
     @Test
     public void testBoardIterator() throws Exception {
-        Iterator<AbstractPiece> pieceIterator = board.iterator();
+        Iterator<Piece> pieceIterator = board.iterator();
         int count = 0;
         int countNull = 0;
         while(pieceIterator.hasNext()) {
@@ -40,11 +40,11 @@ public class BoardIteratorTest {
     @Test
     public void testBoardIteratorColorFilter() throws Exception {
         for(Color color : Color.values()) {
-            Iterator<AbstractPiece> pieceIterator = board.iterator(new ColorPredicate(color));
+            Iterator<Piece> pieceIterator = board.iterator(new ColorPredicate(color));
             int count = 0;
             while(pieceIterator.hasNext()) {
                 ++count;
-                AbstractPiece piece = pieceIterator.next();
+                Piece piece = pieceIterator.next();
                 Assert.assertNotNull(piece);
                 Assert.assertTrue(piece.getColor() == color);
             }
@@ -55,7 +55,7 @@ public class BoardIteratorTest {
 
     @Test
     public void testBoardIteratorPieceFilter() throws Exception {
-        Iterator<AbstractPiece> pieceIterator = board.iterator(new PiecePredicate());
+        Iterator<Piece> pieceIterator = board.iterator(new PiecePredicate());
         int count = 0;
         while(pieceIterator.hasNext()) {
             ++count;

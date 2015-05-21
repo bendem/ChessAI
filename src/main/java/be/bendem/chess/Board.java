@@ -2,7 +2,7 @@ package be.bendem.chess;
 
 import be.bendem.chess.iterators.BoardIterator;
 import be.bendem.chess.iterators.CoordinatesIterator;
-import be.bendem.chess.pieces.AbstractPiece;
+import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.pieces.Bishop;
 import be.bendem.chess.pieces.King;
 import be.bendem.chess.pieces.Knight;
@@ -19,10 +19,10 @@ import java.util.function.Predicate;
  */
 public class Board {
 
-    private AbstractPiece[][] board;
+    private Piece[][] board;
 
     public Board() {
-        board = new AbstractPiece[8][8];
+        board = new Piece[8][8];
 
         initRow(0, Color.Black);
         initRow(1, Color.Black);
@@ -48,7 +48,7 @@ public class Board {
         board[row][7] = new Rook(color, new Coordinates(7, row));
     }
 
-    public AbstractPiece get(Coordinates coordinates) {
+    public Piece get(Coordinates coordinates) {
         return board[coordinates.getY()][coordinates.getX()];
     }
 
@@ -110,11 +110,11 @@ public class Board {
         return get(coordinates) == null;
     }
 
-    public Iterator<AbstractPiece> iterator() {
+    public Iterator<Piece> iterator() {
         return iterator(null);
     }
 
-    public Iterator<AbstractPiece> iterator(Predicate<AbstractPiece> filter) {
+    public Iterator<Piece> iterator(Predicate<Piece> filter) {
         return new BoardIterator(this, filter);
     }
 
