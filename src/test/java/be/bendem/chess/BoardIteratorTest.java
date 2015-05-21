@@ -3,7 +3,7 @@ package be.bendem.chess;
 import be.bendem.chess.filter.ColorPredicate;
 import be.bendem.chess.filter.PiecePredicate;
 import be.bendem.chess.pieces.Piece;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
