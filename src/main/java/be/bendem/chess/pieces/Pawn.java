@@ -38,8 +38,11 @@ public class Pawn extends Piece {
             return false;
         }
 
-        return Direction.getStraights().contains(moveDirection) && board.isEmpty(move.getTo())
-            || Direction.getDiagonals().contains(moveDirection) && !board.isEmpty(move.getTo()) && board.get(move.getTo()).getColor() != color;
+        return Direction.getStraights().contains(moveDirection)
+            && board.isEmpty(move.getTo())
+            || Direction.getDiagonals().contains(moveDirection)
+            && !board.isEmpty(move.getTo())
+            && board.get(move.getTo()).getColor() != color;
     }
 
     @Override
