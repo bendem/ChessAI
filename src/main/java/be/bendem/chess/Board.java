@@ -109,6 +109,18 @@ public class Board implements Iterable<Piece> {
         move.getPiece().move(to);
     }
 
+    public Move createMove(Piece piece, Direction direction) {
+        return createMove(piece.getPosition(), direction, 1);
+    }
+
+    public Move createMove(Piece piece, Direction direction, int count) {
+        return createMove(piece.getPosition(), direction, count);
+    }
+
+    public Move createMove(Position position, Direction direction) {
+        return createMove(position, direction, 1);
+    }
+
     public Move createMove(Position position, Direction direction, int count) {
         return new Move(get(position), position, direction, count);
     }

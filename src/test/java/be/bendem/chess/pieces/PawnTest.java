@@ -2,9 +2,8 @@ package be.bendem.chess.pieces;
 
 import be.bendem.chess.Board;
 import be.bendem.chess.Color;
-import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
-import be.bendem.chess.Move;
+import be.bendem.chess.Position;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +20,8 @@ public class PawnTest {
 
     @Test
     public void testCanMove() throws Exception {
-        Assert.assertFalse(pawn.canMove(board, new Move(pawn, pawn.getPosition(), Direction.Up, 1)));
-        Assert.assertTrue(pawn.canMove(board, new Move(pawn, pawn.getPosition(), Direction.Down, 1)));
+        Assert.assertFalse(pawn.canMove(board, board.createMove(pawn, Direction.Up)));
+        Assert.assertTrue(pawn.canMove(board, board.createMove(pawn, Direction.Down)));
     }
 
     @Test
