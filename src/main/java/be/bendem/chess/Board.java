@@ -17,12 +17,15 @@ import java.util.function.Predicate;
 /**
  * @author bendem
  */
-public class Board {
+public class Board implements Iterable<Piece> {
 
-    private Piece[][] board;
+    private static final int WIDTH = 8;
+    private static final int HEIGHT = 8;
+
+    private final Piece[][] board;
 
     public Board() {
-        board = new Piece[8][8];
+        board = new Piece[WIDTH][HEIGHT];
 
         initRow(0, Color.Black);
         initRow(1, Color.Black);
@@ -32,20 +35,35 @@ public class Board {
 
     private void initRow(int row, Color color) {
         if(row == 1 || row == 6) {
-            for(int i = 0; i < 8; i++) {
-                board[row][i] = new Pawn(color, row == 1 ? Direction.Down : Direction.Up, new Coordinates(i, row));
+            Direction direction = row == 1 ? Direction.Down : Direction.Up;
+            for(int i = 0; i < WIDTH; i++) {
+                board[row][i] = new Pawn(color, direction, new Coordinates(i, row));
             }
             return;
         }
 
-        board[row][0] = new Rook(color, new Coordinates(0, row));
-        board[row][1] = new Knight(color, new Coordinates(1, row));
-        board[row][2] = new Bishop(color, new Coordinates(2, row));
-        board[row][3] = new Queen(color, new Coordinates(3, row));
-        board[row][4] = new King(color, new Coordinates(4, row));
-        board[row][5] = new Bishop(color, new Coordinates(5, row));
-        board[row][6] = new Knight(color, new Coordinates(6, row));
-        board[row][7] = new Rook(color, new Coordinates(7, row));
+        for(int i = 0; i < WIDTH; i++) {
+            switch(i) {
+                case 0:
+                case 7:
+                    board[row][i] = new Rook(color, new Coordinates(i, row));
+                    break;
+                case 1:
+                case 6:
+                    board[row][i] = new Knight(color, new Coordinates(i, row));
+                    break;
+                case 2:
+                case 5:
+                    board[row][i] = new Bishop(color, new Coordinates(i, row));
+                    break;
+                case 3:
+                    board[row][i] = new Queen(color, new Coordinates(i, row));
+                    break;
+                case 4:
+                    board[row][i] = new King(color, new Coordinates(i, row));
+                    break;
+            }
+        }
     }
 
     public Piece get(Coordinates coordinates) {
@@ -110,6 +128,7 @@ public class Board {
         return get(coordinates) == null;
     }
 
+    @Override
     public Iterator<Piece> iterator() {
         return iterator(null);
     }
