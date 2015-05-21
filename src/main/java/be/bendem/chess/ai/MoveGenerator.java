@@ -7,6 +7,7 @@ import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
 import be.bendem.chess.predicates.ColorPredicate;
 import be.bendem.chess.pieces.Piece;
+import be.bendem.chess.utils.Logger;
 import be.bendem.chess.utils.Timer;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class MoveGenerator {
             }
         }
 
-        System.out.println(String.valueOf(moves.size()) + " moves generated in " + Timer.formatNanoSecs(Timer.stopNanoTimer()));
+        Logger.debug("%d moves generated in %s", moves.size(), Timer.formatNanoSecs(Timer.stopNanoTimer()));
 
         return moves;
     }

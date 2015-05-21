@@ -1,8 +1,10 @@
 package be.bendem.chess;
 
 import be.bendem.chess.ai.MoveGenerator;
+import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.pieces.Type;
 import be.bendem.chess.ui.UI;
+import be.bendem.chess.utils.Logger;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,17 +23,17 @@ public class Chess {
         Random random = new Random();
 
         for(int i = 0; i < 300; i++) {
-            System.out.println("Turn " + i);
+            Logger.debug("Turn %d", i);
             List<Move> generated = moveGenerator.generate(currentColor);
             Move move = generated.get(random.nextInt(generated.size()));
-            System.out.println(move);
-            if(!board.isEmpty(move.getTo()) && board.get(move.getTo()).getType() == Type.King) {
-                System.out.println(currentColor.name() + " WIN!");
+            Logger.debug(move.toString());
+            Piece piece = board.get(move.getTo());
+            if(piece != null && piece.getType() == Type.King) {
+                Logger.info("%s WIN!", currentColor.name());
                 break;
             }
             board.move(move);
             ui.refresh();
-            //System.console().readLine();
             Thread.sleep(250);
             currentColor = currentColor == Color.Black ? Color.White : Color.Black;
         }
