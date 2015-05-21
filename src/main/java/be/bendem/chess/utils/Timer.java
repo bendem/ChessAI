@@ -23,7 +23,7 @@ public class Timer {
     }
 
     public static String formatNanoSecs(long time) {
-        return FORMAT.format((double)time / 1000) + " µs";
+        return FORMAT.format((double) time / 1000) + " µs";
     }
 
 }
