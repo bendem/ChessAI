@@ -33,8 +33,8 @@ public class BoardIteratorTest {
             }
         }
 
-        Assert.assertEquals(8*8, count);
-        Assert.assertEquals(8*4, countNull);
+        Assert.assertEquals(Board.WIDTH * Board.HEIGHT, count);
+        Assert.assertEquals(Board.WIDTH * 4, countNull);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class BoardIteratorTest {
                 Assert.assertTrue(piece.getColor() == color);
             }
 
-            Assert.assertEquals(16, count);
+            Assert.assertEquals(Board.WIDTH * 2, count);
         }
     }
 
@@ -61,7 +61,7 @@ public class BoardIteratorTest {
             ++count;
             Assert.assertNotNull(pieceIterator.next());
         }
-        Assert.assertEquals(32, count);
+        Assert.assertEquals(Board.WIDTH * 4, count);
     }
 
 }
