@@ -23,7 +23,8 @@ public class Move {
         this.from = from;
         this.direction = direction;
         this.count = count;
-        to = from.clone();
+        this.to = new Coordinates(from);
+
         for(int i = 0; i < count; i++) {
             to.add(direction);
         }

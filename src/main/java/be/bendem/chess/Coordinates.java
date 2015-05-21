@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @author bendem
  */
-public class Coordinates implements Cloneable {
+public class Coordinates {
 
     private int x;
     private int y;
@@ -15,9 +15,12 @@ public class Coordinates implements Cloneable {
         this(0, 0);
     }
 
+    public Coordinates(Coordinates coordinates) {
+        this(coordinates.getX(), coordinates.getY());
+    }
+
     public Coordinates(Coordinates coordinates, Direction direction) {
-        x = coordinates.getX();
-        y = coordinates.getY();
+        this(coordinates.getX(), coordinates.getY());
         add(direction);
     }
 
@@ -51,15 +54,6 @@ public class Coordinates implements Cloneable {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public final Coordinates clone() {
-        try {
-            return (Coordinates) super.clone();
-        } catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     @Override

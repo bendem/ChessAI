@@ -15,7 +15,7 @@ public class CoordinatesIterator implements Iterator<Coordinates> {
 
     public CoordinatesIterator(Coordinates coordinates, Direction direction) {
         this.direction = direction;
-        this.current = coordinates.clone();
+        this.current = new Coordinates(coordinates);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CoordinatesIterator implements Iterator<Coordinates> {
     @Override
     public Coordinates next() {
         current.add(direction);
-        return current.clone();
+        return new Coordinates(current);
     }
 
 }
