@@ -6,10 +6,17 @@ import java.util.Stack;
 
 public class Timer {
 
-    private final Map<Part, Long> times = new EnumMap<>(Part.class);
-    private final Stack<Part> previousParts = new Stack<>();
-    private long timer = System.nanoTime();
-    private Part currentPart = Part.Idle;
+    private final Map<Part, Long> times;
+    private final Stack<Part> previousParts;
+    private long timer;
+    private Part currentPart;
+
+    public Timer() {
+        times = new EnumMap<>(Part.class);
+        previousParts = new Stack<>();
+        timer = System.nanoTime();
+        currentPart = Part.Idle;
+    }
 
     public Timer start(Part part) {
         if(currentPart == part) {
