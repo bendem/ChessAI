@@ -4,24 +4,27 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Stack;
 
-/**
- * @author bendem
- */
 public class Timer {
 
-    private static final Map<Part, Long> times = new EnumMap<>(Part.class);
-    private static final Stack<Part> previousParts = new Stack<>();
-    private static long timer = System.nanoTime();
-    private static Part currentPart = Part.Idle;
+    private final Map<Part, Long> times = new EnumMap<>(Part.class);
+    private final Stack<Part> previousParts = new Stack<>();
+    private long timer = System.nanoTime();
+    private Part currentPart = Part.Idle;
 
-    public static void start(Part part) {
+    public Timer start(Part part) {
+        if(currentPart == part) {
+            return this;
+        }
+
         previousParts.add(currentPart);
         stop();
         currentPart = part;
         timer = System.nanoTime();
+
+        return this;
     }
 
-    public static void stop() {
+    public Timer stop() {
         long newTime = System.nanoTime();
         increase(currentPart, newTime - timer);
         timer = newTime;
@@ -29,13 +32,15 @@ public class Timer {
         currentPart = previousParts.isEmpty()
             ? Part.Idle
             : previousParts.pop();
+
+        return this;
     }
 
-    public static TimerReport report() {
-        return new TimerReport(times);
+    public TimerReport report() {
+        return new TimerReport(new EnumMap<>(times));
     }
 
-    private static void increase(Part part, long time) {
+    private void increase(Part part, long time) {
         times.put(part, times.getOrDefault(currentPart, 0l) + time);
         if(part.hasParent()) {
             increase(part.parent(), time);

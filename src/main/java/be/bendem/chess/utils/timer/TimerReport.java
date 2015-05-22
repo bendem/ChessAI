@@ -14,7 +14,7 @@ public class TimerReport {
 
     private static StringBuilder indent(StringBuilder builder, int level) {
         for(int i = 0; i < level; ++i) {
-            builder.append("  ");
+            builder.append("   ");
         }
         return builder;
     }

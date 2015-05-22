@@ -1,7 +1,7 @@
 package be.bendem.chess.utils;
 
+import be.bendem.chess.Chess;
 import be.bendem.chess.utils.timer.Part;
-import be.bendem.chess.utils.timer.Timer;
 
 public class Logger {
 
@@ -13,9 +13,9 @@ public class Logger {
     }
 
     public static void log(Level level, String str, Object...args) {
-        Timer.start(Part.Log);
+        Chess.TIMER.start(Part.Log);
         System.out.println('[' + level.name() + "] " + String.format(str, args));
-        Timer.stop();
+        Chess.TIMER.stop();
     }
 
     public static void debug(String str, Object...args) {

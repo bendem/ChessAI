@@ -11,23 +11,20 @@ import be.bendem.chess.utils.timer.Timer;
 import java.io.IOException;
 import java.util.Optional;
 
-/**
- * @author bendem
- */
 public class Chess {
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-        Timer.start(Part.Init);
+    public static Timer TIMER = new Timer().start(Part.Init);
 
+    public static void main(String[] args) throws InterruptedException, IOException {
         Board board = new Board();
         MoveGenerator moveGenerator = new MoveGenerator(board);
         Color currentColor = Color.White;
         UI ui = new UI(board);
 
-        Timer.stop();
+        TIMER.stop();
 
         for(int i = 0; i < 300; i++) {
-            Timer.start(Part.Game);
+            TIMER.start(Part.Game);
             Logger.debug("Turn %d", i);
 
             Optional<Move> optMove = moveGenerator.generate(currentColor).findFirst();
@@ -45,9 +42,9 @@ public class Chess {
             }
             board.move(move);
 
-            Timer.start(Part.UpdateUI);
+            TIMER.start(Part.UpdateUI);
             ui.refresh();
-            Timer.stop();
+            TIMER.stop();
 
             Logger.debug("%s (%s) from %s to %s",
                 move.getPiece().getType(),
@@ -55,13 +52,13 @@ public class Chess {
                 move.getFrom(),
                 move.getTo());
 
-            Timer.stop();
-            Thread.sleep(100);
+            TIMER.stop();
+            //Thread.sleep(300);
 
             currentColor = currentColor == Color.Black ? Color.White : Color.Black;
         }
 
-        System.out.println(Timer.report().generate());
+        System.out.println(TIMER.report().generate());
     }
 
 }

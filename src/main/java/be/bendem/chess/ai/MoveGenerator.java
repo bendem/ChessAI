@@ -1,6 +1,7 @@
 package be.bendem.chess.ai;
 
 import be.bendem.chess.Board;
+import be.bendem.chess.Chess;
 import be.bendem.chess.Color;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
@@ -8,7 +9,6 @@ import be.bendem.chess.Position;
 import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.predicates.ColorPredicate;
 import be.bendem.chess.utils.timer.Part;
-import be.bendem.chess.utils.timer.Timer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +29,7 @@ public class MoveGenerator {
     }
 
     public Stream<Move> generate(Color color) {
-        Timer.start(Part.GenerateMove);
+        Chess.TIMER.start(Part.GenerateMove);
 
         try {
             return board.stream()
@@ -39,12 +39,11 @@ public class MoveGenerator {
                 .filter(move -> move.getPiece().canMove(board, move))
                 .sorted(moveRanker::compare);
         } finally {
-            Timer.stop();
+            Chess.TIMER.stop();
         }
     }
 
     private Stream<Move> generateMovesForPiece(Piece piece) {
-
         if(piece.isMoveCountRestricted()) {
             // TODO Handle King castling
             return piece.getDirections().stream()

@@ -1,10 +1,10 @@
 package be.bendem.chess.ai;
 
 import be.bendem.chess.Board;
+import be.bendem.chess.Chess;
 import be.bendem.chess.Move;
 import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.utils.timer.Part;
-import be.bendem.chess.utils.timer.Timer;
 
 public class MoveRanker {
 
@@ -15,7 +15,7 @@ public class MoveRanker {
     }
 
     public int rank(Move move) {
-        Timer.start(Part.RankMove);
+        Chess.TIMER.start(Part.RankMove);
 
         try {
             Piece piece = board.get(move.getTo());
@@ -38,7 +38,7 @@ public class MoveRanker {
 
             throw new AssertionError();
         } finally {
-            Timer.stop();
+            Chess.TIMER.stop();
         }
     }
 

@@ -8,13 +8,17 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+/**
+ * All the things here are because EnumSet is bitching when trying
+ * to use it before the enum is fully initialized.
+ */
 public enum Part {
     RankMove,
     GenerateMove,
     Move(GenerateMove, RankMove),
     UpdateUI,
+    Game(Move, UpdateUI),
     Init,
-    Game(Move, UpdateUI, Init),
     Log,
     Idle,
     ;
