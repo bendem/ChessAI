@@ -7,8 +7,8 @@ import be.bendem.chess.Move;
 import be.bendem.chess.Position;
 import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.predicates.ColorPredicate;
-import be.bendem.chess.utils.Logger;
-import be.bendem.chess.utils.Timer;
+import be.bendem.chess.utils.timer.Part;
+import be.bendem.chess.utils.timer.Timer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,22 +29,22 @@ public class MoveGenerator {
     }
 
     public Stream<Move> generate(Color color) {
-        Timer.startNanoTimer();
+        Timer.start(Part.GenerateMove);
 
-        Stream<Move> moves = board.stream()
-            .filter(ColorPredicate.of(color))
-            .map(this::generateMovesForPiece)
-            .flatMap(pieces -> pieces)
-            .filter(move -> move.getPiece().canMove(board, move))
-            .sorted(moveRanker::compare)
-            ;
-
-        Logger.debug("moves generated in %s", Timer.formatNanoSecs(Timer.stopNanoTimer()));
-
-        return moves;
+        try {
+            return board.stream()
+                .filter(ColorPredicate.of(color))
+                .map(this::generateMovesForPiece)
+                .flatMap(pieces -> pieces)
+                .filter(move -> move.getPiece().canMove(board, move))
+                .sorted(moveRanker::compare);
+        } finally {
+            Timer.stop();
+        }
     }
 
     private Stream<Move> generateMovesForPiece(Piece piece) {
+
         if(piece.isMoveCountRestricted()) {
             // TODO Handle King castling
             return piece.getDirections().stream()

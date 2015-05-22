@@ -3,6 +3,8 @@ package be.bendem.chess.ai;
 import be.bendem.chess.Board;
 import be.bendem.chess.Move;
 import be.bendem.chess.pieces.Piece;
+import be.bendem.chess.utils.timer.Part;
+import be.bendem.chess.utils.timer.Timer;
 
 public class MoveRanker {
 
@@ -13,25 +15,31 @@ public class MoveRanker {
     }
 
     public int rank(Move move) {
-        Piece piece = board.get(move.getTo());
-        if(piece == null) {
-            return 0;
-        }
+        Timer.start(Part.RankMove);
 
-        switch(piece.getType()) {
-            case King:
-                return Integer.MAX_VALUE;
-            case Queen:
-                return 50;
-            case Bishop:
-            case Rook:
-            case Knight:
-                return 20;
-            case Pawn:
-                return 5;
-        }
+        try {
+            Piece piece = board.get(move.getTo());
+            if(piece == null) {
+                return 0;
+            }
 
-        throw new AssertionError();
+            switch(piece.getType()) {
+                case King:
+                    return Integer.MAX_VALUE;
+                case Queen:
+                    return 50;
+                case Bishop:
+                case Rook:
+                case Knight:
+                    return 20;
+                case Pawn:
+                    return 5;
+            }
+
+            throw new AssertionError();
+        } finally {
+            Timer.stop();
+        }
     }
 
     public int compare(Move move1, Move move2) {
