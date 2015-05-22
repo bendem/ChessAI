@@ -1,19 +1,17 @@
 package be.bendem.chess;
 
-import be.bendem.chess.iterators.BoardIterator;
 import be.bendem.chess.iterators.PositionIterator;
 import be.bendem.chess.pieces.*;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
  * @author bendem
  */
-public class Board implements Iterable<Piece> {
+public class Board {
 
     public static final int WIDTH = 8;
     public static final int HEIGHT = 8;
@@ -134,15 +132,6 @@ public class Board implements Iterable<Piece> {
 
     public boolean isEmpty(Position position) {
         return get(position) == null;
-    }
-
-    @Override
-    public Iterator<Piece> iterator() {
-        return iterator(null);
-    }
-
-    public Iterator<Piece> iterator(Predicate<Piece> filter) {
-        return new BoardIterator(this, filter);
     }
 
     public Iterator<Position> iterator(Position position, Direction direction) {

@@ -2,9 +2,6 @@ package be.bendem.chess.predicates;
 
 import java.util.function.Predicate;
 
-/**
- * @author bendem
- */
 public class NotNullPredicate<T> implements Predicate<T> {
 
     private static final NotNullPredicate INSTANCE = new NotNullPredicate<>();
