@@ -1,7 +1,7 @@
 package be.bendem.chess;
 
 import be.bendem.chess.iterators.BoardIterator;
-import be.bendem.chess.iterators.CoordinatesIterator;
+import be.bendem.chess.iterators.PositionIterator;
 import be.bendem.chess.pieces.*;
 import org.apache.commons.lang3.Validate;
 
@@ -146,7 +146,7 @@ public class Board implements Iterable<Piece> {
     }
 
     public Iterator<Position> iterator(Position position, Direction direction) {
-        return new CoordinatesIterator(position, direction);
+        return new PositionIterator(position, direction);
     }
 
     public Stream<Piece> stream() {
