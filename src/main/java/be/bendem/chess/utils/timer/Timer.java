@@ -23,10 +23,12 @@ public class Timer {
             return this;
         }
 
+        long newTime = System.nanoTime();
+        increase(currentPart, newTime - timer);
+        timer = newTime;
+
         previousParts.add(currentPart);
-        stop();
         currentPart = part;
-        timer = System.nanoTime();
 
         return this;
     }
@@ -48,7 +50,7 @@ public class Timer {
     }
 
     private void increase(Part part, long time) {
-        times.put(part, times.getOrDefault(currentPart, 0l) + time);
+        times.put(part, times.getOrDefault(part, 0l) + time);
         if(part.hasParent()) {
             increase(part.parent(), time);
         }
