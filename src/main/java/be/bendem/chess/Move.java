@@ -14,6 +14,10 @@ public class Move {
     private final int count;
     private final Position to;
 
+    public Move(Position from, Direction direction) {
+        this(from, direction, 1);
+    }
+
     public Move(Position from, Direction direction, int count) {
         Validate.isTrue(count > 0);
 

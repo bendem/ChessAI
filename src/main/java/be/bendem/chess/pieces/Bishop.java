@@ -1,7 +1,5 @@
 package be.bendem.chess.pieces;
 
-import be.bendem.chess.Color;
-import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 
 import java.util.Set;
@@ -9,10 +7,10 @@ import java.util.Set;
 /**
  * @author bendem
  */
-public class Bishop extends Piece {
+public class Bishop extends PieceHandler {
 
-    public Bishop(Color color, Position position) {
-        super(color, position, false);
+    protected Bishop() {
+        super(false);
     }
 
     @Override

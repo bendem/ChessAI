@@ -1,8 +1,8 @@
 package be.bendem.chess.iterators;
 
 import be.bendem.chess.Board;
+import be.bendem.chess.Piece;
 import be.bendem.chess.Position;
-import be.bendem.chess.pieces.Piece;
 
 import java.util.Iterator;
 import java.util.function.Predicate;

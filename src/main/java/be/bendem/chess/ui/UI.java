@@ -1,14 +1,12 @@
 package be.bendem.chess.ui;
 
 import be.bendem.chess.Board;
+import be.bendem.chess.GameBoard;
+import be.bendem.chess.Piece;
 import be.bendem.chess.Position;
-import be.bendem.chess.pieces.Piece;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class UI extends JFrame {
             x.setHorizontalAlignment(JLabel.CENTER);
             x.setVerticalAlignment(JLabel.CENTER);
             x.setOpaque(true);
-            if(Board.isWhite(new Position(i % Board.WIDTH, i / Board.HEIGHT))) {
+            if(GameBoard.isWhite(new Position(i % Board.WIDTH, i / Board.HEIGHT))) {
                 x.setBackground(Color.LIGHT_GRAY);
             } else {
                 x.setBackground(Color.DARK_GRAY);
@@ -64,14 +62,14 @@ public class UI extends JFrame {
             if(piece == null) {
                 x.setText("");
             } else {
-                x.setForeground(piece.getColor() == be.bendem.chess.Color.Black ? Color.BLACK : Color.WHITE);
-                x.setText(piece.getClass().getSimpleName().toUpperCase().substring(0, 2));
+                x.setForeground(piece.color == be.bendem.chess.Color.Black ? Color.BLACK : Color.WHITE);
+                x.setText(piece.type.name().toUpperCase().substring(0, 2));
             }
         }
     }
 
     public static void main(String[] args) {
-        new UI(new Board());
+        new UI(new GameBoard());
     }
 
 }

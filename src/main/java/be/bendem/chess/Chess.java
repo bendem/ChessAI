@@ -1,7 +1,6 @@
 package be.bendem.chess;
 
 import be.bendem.chess.ai.MoveGenerator;
-import be.bendem.chess.pieces.Piece;
 import be.bendem.chess.pieces.Type;
 import be.bendem.chess.ui.UI;
 import be.bendem.chess.utils.Logger;
@@ -16,7 +15,7 @@ public class Chess {
     public static Timer TIMER = new Timer().start(Part.Init);
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        Board board = new Board();
+        Board board = new GameBoard();
         MoveGenerator moveGenerator = new MoveGenerator(board);
         Color currentColor = Color.White;
         UI ui = new UI(board);
@@ -36,7 +35,11 @@ public class Chess {
 
             Piece piece = board.get(move.getTo());
 
-            if(piece != null && piece.getType() == Type.King) {
+            if(piece == null) {
+                throw new AssertionError("How did piece get null?");
+            }
+
+            if(piece.type == Type.King) {
                 Logger.info("%s WIN!", currentColor.name());
                 break;
             }
@@ -47,13 +50,13 @@ public class Chess {
             TIMER.stop();
 
             Logger.debug("%s (%s) from %s to %s",
-                board.get(move.getFrom()).getType(),
-                board.get(move.getFrom()).getColor(),
+                piece.type,
+                piece.color,
                 move.getFrom(),
                 move.getTo());
 
             TIMER.stop();
-            //Thread.sleep(300);
+            Thread.sleep(1000);
 
             currentColor = currentColor == Color.Black ? Color.White : Color.Black;
         }

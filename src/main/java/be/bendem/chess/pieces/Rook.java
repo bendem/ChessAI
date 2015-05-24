@@ -1,7 +1,5 @@
 package be.bendem.chess.pieces;
 
-import be.bendem.chess.Color;
-import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 
 import java.util.Set;
@@ -9,10 +7,10 @@ import java.util.Set;
 /**
  * @author bendem
  */
-public class Rook extends Piece {
+public class Rook extends PieceHandler {
 
-    public Rook(Color color, Position position) {
-        super(color, position, false);
+    protected Rook() {
+        super(false);
     }
 
     @Override

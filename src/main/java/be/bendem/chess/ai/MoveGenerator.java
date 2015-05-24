@@ -3,16 +3,9 @@ package be.bendem.chess.ai;
 import be.bendem.chess.Board;
 import be.bendem.chess.Chess;
 import be.bendem.chess.Color;
-import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
-import be.bendem.chess.Position;
-import be.bendem.chess.pieces.Piece;
-import be.bendem.chess.predicates.ColorPredicate;
 import be.bendem.chess.utils.timer.Part;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -30,31 +23,33 @@ public class MoveGenerator {
 
     public Stream<Move> generate(Color color) {
         Chess.TIMER.start(Part.GenerateMove);
-
+        return Stream.of();
+/*
         try {
             return board.stream()
                 .filter(ColorPredicate.of(color))
                 .map(this::generateMovesForPiece)
                 .flatMap(pieces -> pieces)
-                .filter(move -> board.get(move.getFrom()).canMove(board, move))
+                .filter(move -> PieceHandler.forType(board.get(move.getFrom()).type).canMove(board, move))
                 .sorted(moveRanker::compare);
         } finally {
             Chess.TIMER.stop();
         }
+
     }
 
     private Stream<Move> generateMovesForPiece(Piece piece) {
         if(piece.isMoveCountRestricted()) {
             // TODO Handle King castling
-            return piece.getDirections().stream()
-                .map(direction -> board.createMove(piece.getPosition(), direction, 1));
+            return PieceHandler.forType(piece.type).getDirections().stream()
+                .map(direction -> new Move(piece.getPosition(), direction));
         }
 
         return piece.getDirections().stream()
             .flatMap(direction -> generateMovesForDirection(piece, direction));
     }
 
-    private Stream<Move> generateMovesForDirection(Piece piece, Direction direction) {
+    private Stream<Move> generateMovesForDirection(PieceHandler piece, Direction direction) {
         List<Move> moves = new ArrayList<>();
         Iterator<Position> coordinatesIterator = board.iterator(piece.getPosition(), direction);
         int count = 0;
@@ -66,6 +61,7 @@ public class MoveGenerator {
         }
 
         return moves.stream();
+*/
     }
 
 }

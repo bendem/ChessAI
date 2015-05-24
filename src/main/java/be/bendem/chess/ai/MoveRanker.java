@@ -3,7 +3,7 @@ package be.bendem.chess.ai;
 import be.bendem.chess.Board;
 import be.bendem.chess.Chess;
 import be.bendem.chess.Move;
-import be.bendem.chess.pieces.Piece;
+import be.bendem.chess.Piece;
 import be.bendem.chess.utils.timer.Part;
 
 public class MoveRanker {
@@ -23,7 +23,7 @@ public class MoveRanker {
                 return 0;
             }
 
-            switch(piece.getType()) {
+            switch(piece.type) {
                 case King:
                     return Integer.MAX_VALUE;
                 case Queen:

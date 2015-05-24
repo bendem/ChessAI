@@ -23,8 +23,8 @@ public class Castle {
      * @return true if the moves are valid, false otherwise
      */
     public boolean isValid(Board board) {
-        return (board.get(kingMove.getFrom()).getType() == Type.King)
-            && (board.get(rookMove.getFrom()).getType() == Type.Rook)
+        return (board.get(kingMove.getFrom()).type == Type.King)
+            && (board.get(rookMove.getFrom()).type == Type.Rook)
             && (Direction.getKingCastles().contains(kingMove.getDirection()))
             && (Direction.getRookCastles().contains(rookMove.getDirection()))
             && (kingMove.getDirection().isLeft() != rookMove.getDirection().isLeft());
