@@ -47,8 +47,8 @@ public class Chess {
             TIMER.stop();
 
             Logger.debug("%s (%s) from %s to %s",
-                move.getPiece().getType(),
-                move.getPiece().getColor(),
+                board.get(move.getFrom()).getType(),
+                board.get(move.getFrom()).getColor(),
                 move.getFrom(),
                 move.getTo());
 

@@ -36,7 +36,7 @@ public class MoveGenerator {
                 .filter(ColorPredicate.of(color))
                 .map(this::generateMovesForPiece)
                 .flatMap(pieces -> pieces)
-                .filter(move -> move.getPiece().canMove(board, move))
+                .filter(move -> board.get(move.getFrom()).canMove(board, move))
                 .sorted(moveRanker::compare);
         } finally {
             Chess.TIMER.stop();

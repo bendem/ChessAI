@@ -5,6 +5,7 @@ import be.bendem.chess.Color;
 import be.bendem.chess.Position;
 import be.bendem.chess.Direction;
 import be.bendem.chess.Move;
+import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -33,6 +34,7 @@ public abstract class Piece {
     public abstract Set<Direction> getAllDirections();
 
     public boolean canMove(Board board, Move move) {
+        Validate.isTrue(board.get(move.getFrom()) == this, "Can't validate the move of another piece");
         if(!getDirections().contains(move.getDirection())) {
             return false;
         }
@@ -46,7 +48,7 @@ public abstract class Piece {
 
             if(!board.isEmpty(current)) {
                 Piece piece = board.get(current);
-                if(piece.getColor() == move.getPiece().getColor()) {
+                if(piece.getColor() == getColor()) {
                     return false;
                 } else {
                     break;

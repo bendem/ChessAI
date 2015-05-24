@@ -71,13 +71,13 @@ public class Board {
      * @return Returns true if the moves can be executed, false otherwise
      */
     public boolean canCastle(Castle castle) {
-        if(!castle.isValid()) {
+        if(!castle.isValid(this)) {
             return false;
         }
 
         Move kingMove = castle.getKingMove();
         Move rookMove = castle.getRookMove();
-        if(kingMove.getPiece().hasMoved() || rookMove.getPiece().hasMoved()) {
+        if(get(kingMove.getFrom()).hasMoved() || get(rookMove.getFrom()).hasMoved()) {
             return false;
         }
 
@@ -96,11 +96,12 @@ public class Board {
     public void move(Move move) {
         Position from = move.getFrom();
         Position to = move.getTo();
+        Piece piece = board[from.getY()][from.getX()];
 
-        board[to.getY()][to.getX()] = board[from.getY()][from.getX()];
+        board[to.getY()][to.getX()] = piece;
         board[from.getY()][from.getX()] = null;
 
-        move.getPiece().move(to);
+        piece.move(to);
     }
 
     public Move createMove(Piece piece, Direction direction) {
@@ -116,7 +117,7 @@ public class Board {
     }
 
     public Move createMove(Position position, Direction direction, int count) {
-        return new Move(get(position), position, direction, count);
+        return new Move(position, direction, count);
     }
 
     public Castle createCastle(King king, Direction direction) {
