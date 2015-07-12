@@ -1,3 +1,5 @@
+**Spoilers, this is broken by design, using Streams was a bad idea. Feel free to read the code, but realize it's broken.**
+
 # ChessAI
 
 Today, I got time, so I'll start to make some chess stuff...
